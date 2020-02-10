@@ -4,6 +4,8 @@ This website is built using [Docusaurus 2](https://v2.docusaurus.io/), a modern 
 
 ### Installation
 
+_ All commands should be ran in the `TempleEight` folder of this project _
+
 ```
 $ yarn
 ```

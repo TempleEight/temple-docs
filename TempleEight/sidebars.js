@@ -8,6 +8,6 @@
 module.exports = {
   someSidebar: {
     'The Basics': ['welcome', 'getting-started'],
-    TempleFile: ['templefile-spec', 'primatives'],
+    TempleFile: ['templefile-spec', 'primitives'],
   },
 };

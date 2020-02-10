@@ -12,7 +12,7 @@ sidebar_label: Templefile Specification
 bool
 string(maxLength: int, minLength: int)
 int(max: int, min: int = 0)
-float(max: float, min: float = 0.0f, precision: int = 8)
+float(max: float, min: float = 0.0, precision: int = 8)
 date
 time
 datetime

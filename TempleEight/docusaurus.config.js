@@ -1,7 +1,7 @@
 module.exports = {
   title: 'Temple',
   tagline: 'makes it easy to get new microservices up and running, at lightning speed',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://templeeight.github.io/temple-docs/',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
   organizationName: 'TempleEight', // Usually your GitHub org/user name.

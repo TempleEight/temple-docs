@@ -1,10 +1,10 @@
 ---
-id: primatives
-title: Primatives
-sidebar_label: Primatives
+id: primitives
+title: Primitives
+sidebar_label: Primitives
 ---
 
-TempleFile supports 8 primative types, roughly aligned with those found in `SQL` style languages. Any property of a service can be of any of these types. 
+TempleFile supports 8 primitive types, roughly aligned with those found in `SQL` style languages. Any property of a service can be of any of these types. 
 
 ```temple
 bool
@@ -23,7 +23,7 @@ Many types include optional parameterisations, which will be enforced as either 
 
 All parameters are optional, and many have defaults that can be overridden.
 
-## Primatives
+## Primitives
 
 ### `bool`
 
