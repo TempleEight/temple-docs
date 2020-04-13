@@ -55,8 +55,8 @@ Match: service {
   userTwo: User;
   matchedOn: datetime @serverSet;
   #enumerable; // Adds list endpoint, filters by `created_by`, only creator can GET
-  // Implicit #readable(by: this), only creator can GET
-  // Implicit #writable(by: this), only creator can UPDATE and DELETE 
+  // Implicit #readable(by: all), everyone can GET
+  // Implicit #writable(by: all), everyone can UPDATE and DELETE 
 }
 ```
 
@@ -134,8 +134,8 @@ Match: service {
   userTwo: User;
   matchedOn: datetime @serverSet;
   #enumerable; // Adds list endpoint, filters by `created_by`, only creator can GET
-  // Implicit #readable(by: this), only creator can GET
-  // Implicit #writable(by: this), only creator can UPDATE and DELETE 
+  // Implicit #readable(by: all), everyone can GET
+  // Implicit #writable(by: all), everyone can UPDATE and DELETE 
 }
 ```
 
