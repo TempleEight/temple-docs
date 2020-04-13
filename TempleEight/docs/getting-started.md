@@ -25,7 +25,7 @@ Temple projects start their life as an empty directory. Let's make one for this 
 
 The Templefile is the heart of the project, it contains all of the information the Temple CLI uses to build your application files.
 
-A Temple file is any text file with the `.temple` extension. 
+A Templefile is any text file with the `.temple` extension. 
 
 For a full reference of the Templefile language, check out the [Templefile Spec](templefile-spec.md).
 
