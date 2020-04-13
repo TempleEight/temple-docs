@@ -46,4 +46,14 @@ Currently, we support generating code in:
 
 #### Client-side 
 
-* _ 
+* Many target generation via [OpenAPI](https://swagger.io/docs/specification/about/)
+
+#### Orchestration
+
+* [docker-compose](https://docs.docker.com/compose/) for lightweight container orchestration
+
+* [Kubernetes](https://kubernetes.io) for fully-featured production grade orchestration
+
+#### Extras
+
+* Service metrics aggregated and displayed with [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/)
