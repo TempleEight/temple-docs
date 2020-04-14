@@ -6,8 +6,7 @@ sidebar_label: Welcome
 
 ### If you're here, it's because you want to know about Temple: 
 
-> Know about Temple and just want to get going? Check out the [Getting Started guide](getting-started.md)
-
+> Know about Temple and just want to get going? Check out the [Quickstart Guide](quickstart)
 
 
 **Temple** is a software framework for automatically generating routine microservices based on a high level DSL, leaving you to focus on the business logic specific to your system.
