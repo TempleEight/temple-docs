@@ -99,11 +99,11 @@ Each service block in a Templefile defines one generated microservice.
 
 The opening statement `User: service` defines a new service, named User, which is the name Temple will use to refer to this service.
 
-> As `User` is a reserved keyword in the `PostgreSQL` query language, Temple will automatically rename this service internally to be `datingapp-user`, in order to mitigate naming clashes. The CLI will do this automatically with many variables that share name with generated reserved keywords.
+> As `User` is a reserved keyword in `PostgreSQL`, Temple will automatically rename this service internally to be `datingapp-user`, in order to mitigate naming clashes. The CLI will do this automatically with many variables that share name with generated reserved keywords.
 
 Service block can contain two kinds of declarations: *Property definitions* and *metadata*. 
 
-Property declarations tell us about the kind of data belonging to the entity this service describes. For example, here we say that a `User` has a `firstName` and a `lastName`, which are both `string` properties, and a date of birth (`dob`), which is a `datetime` property. Property declarations can either have a [*primative* datatype](primitives), or be a *foreign key* to another service.
+Property declarations tell us about the kind of data belonging to the entity this service describes. For example, here we say that a `User` has a `firstName` and a `lastName`, which are both `string` properties, and a date of birth (`dob`), which is a `datetime` property. Property declarations can either be a [*primitive* datatype](primitives), or be a *foreign key* to another service.
 
 Every service in Temple also has an implicit `id` property, which assigns a `UUID` to each entity stored in a service, used for foreign keys and authentication.
 
@@ -117,7 +117,7 @@ In terms of implementation, having an `auth` block anywhere in a Templefile caus
 
 #### Permission Metadata
 
-Another type of metadata, present in every service are permission based metadata. These consist of `#readable`, `#writable`, and `#enumerable`. They respectfully define which other entities can read, write and enumerate the values stored in this service. 
+Another type of metadata, present in every service are permission based metadata. These consist of `#readable`, `#writable`, and `#enumerable`. They define which other entities can read, write and enumerate respectively the values stored in this service. 
 
 `#readable` has two options, `#readable(by: this)` is the default value when the service contains an auth block, and is `#readable(by: all)` when it doesn't. `by: this` defines that the only entity that can read the values stored in this entity, is this entity itself (i.e. The only `User` who can read `Bob's` date of birth, is `Bob` himself). This is opposed by `#readable(by: all)` which specifies that all `Users` can get information about all other users. 
 
@@ -167,7 +167,7 @@ The Temple CLI contains a tool for validating your Templefile before generating 
 Templefile validated correctly
 ```
 
-Which means our Templefile is syntactically correct, and we an begin to generate all the code we need.
+Which means our Templefile is syntactically correct, and we can begin to generate all the code we need.
 
 ### Generating Code
 
@@ -184,7 +184,7 @@ Begins the process. The first thing we'll see is the CLI prompting us to give so
 What should the Go module name be? (expected format "github.com/username/repo")
 ```
 
-We need to enter the name of the Golang module we'll be generating into for our project, this can be anything, but standards dictate it should be the github URL of where this project will be hosted. 
+We need to enter the name of the Golang module we'll be generating into for our project, this can be anything, but standards dictate it should be the GitHub URL of where this project will be hosted. 
 
 For this example enter `github.com/temple/tutorial`. 
 
