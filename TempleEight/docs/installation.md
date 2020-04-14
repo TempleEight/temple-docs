@@ -38,7 +38,7 @@ import TabItem from '@theme/TabItem';
 <TabItem value="macos">
 Installation is via <a href="https://brew.sh/">Homebrew</a>.
 To install, run:
-<code> brew tap templeeight/temple</code>
+<code> brew tap templeeight/temple</code><br/>
 <code>brew install temple</code>
 </TabItem>
 <TabItem value="linux">This is an orange 🍊</TabItem>

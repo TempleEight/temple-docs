@@ -49,7 +49,7 @@ This is the name Temple uses for your project globally.
 
 Then, inside the project block there are a number of metadata items that tell us things about the project on a global scale.
 
-Metadata definitions begin with `#` characters and tell us something about a project, or a service and how it interacts with other services. 
+Metadata definitions begin with `#` characters and tell us something about a project or a service, and how it interacts with other services. 
 For a full list of all valid metadata, see the [Templefile Spec](templefile-spec).
 
 Here, we define the server language for all services to be Golang, and the database backing everything up to be Postgres.
@@ -155,14 +155,14 @@ We'll break these outputs down to understand what each one means.
 /example-service/
 ```
 
-This directory contains the Go code for each microservice.
+This directory contains the Go code for the `ExampleService` we defined earlier.
 A full description of this can be seen in the [Golang Reference](golang)
 
 ```
 /example-service-db/
 ```
 
-This directory contains the SQL init scripts for the databases on the service. These scripts manage the database schema and define which fields are stored.
+This directory contains the SQL init scripts for the database backing the `ExampleService`. These scripts manage the database schema and define which fields are stored.
 
 ```
 /api/
