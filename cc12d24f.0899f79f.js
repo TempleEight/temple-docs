@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[25],{115:function(e){e.exports=JSON.parse('{"allTagsPath":"/temple-docs/blog/tags","slug":"welcome","name":"welcome","count":1,"permalink":"/temple-docs/blog/tags/welcome"}')}}]);
