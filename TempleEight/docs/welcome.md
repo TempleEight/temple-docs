@@ -6,8 +6,7 @@ sidebar_label: Welcome
 
 ### If you're here, it's because you want to know about Temple: 
 
-> Know about Temple and just want to get going? Check out the [Getting Started guide](getting-started.md)
-
+> Know about Temple and just want to get going? Check out the [Getting Started Guide](guide/getting-started)
 
 
 **Temple** is a software framework for automatically generating routine microservices based on a high level DSL, leaving you to focus on the business logic specific to your system.
@@ -28,7 +27,13 @@ All generated code is designed from the ground up to be human readable, extensib
 
 Decided that you need to change your Temple configuration half way through development? No problem! Temple supports diffing user code in order to enable continuous generation and development.
 
+## Get Going
 
+First, make sure you've installed the Temple CLI by following the [Installation Guide](installation).
+
+If you need some pointers in the right direction, check out the [Tutorial](guide/getting-started).
+
+For specific details about any part of the Temple ecosystem, there's the [Full Reference](reference/contents).
 
 ## Currently Supported
 
@@ -46,4 +51,14 @@ Currently, we support generating code in:
 
 #### Client-side 
 
-* _ 
+* Many target generation via [OpenAPI](https://swagger.io/docs/specification/about/)
+
+#### Orchestration
+
+* [docker-compose](https://docs.docker.com/compose/) for lightweight container orchestration
+
+* [Kubernetes](https://kubernetes.io) for fully-featured production grade orchestration
+
+#### Extras
+
+* Service metrics aggregated and displayed with [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/)
