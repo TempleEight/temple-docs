@@ -6,7 +6,7 @@ sidebar_label: Welcome
 
 ### If you're here, it's because you want to know about Temple: 
 
-> Know about Temple and just want to get going? Check out the [Quickstart Guide](quickstart)
+> Know about Temple and just want to get going? Check out the [Getting Started Guide](guide/getting-started)
 
 
 **Temple** is a software framework for automatically generating routine microservices based on a high level DSL, leaving you to focus on the business logic specific to your system.
@@ -27,7 +27,13 @@ All generated code is designed from the ground up to be human readable, extensib
 
 Decided that you need to change your Temple configuration half way through development? No problem! Temple supports diffing user code in order to enable continuous generation and development.
 
+## Get Going
 
+First, make sure you've installed the Temple CLI by following the [Installation Guide](installation).
+
+If you need some pointers in the right direction, check out the [Tutorial](guide/getting-started).
+
+For specific details about any part of the Temple ecosystem, there's the [Full Reference](reference/contents).
 
 ## Currently Supported
 
