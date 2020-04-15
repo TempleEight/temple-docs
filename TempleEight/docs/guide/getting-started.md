@@ -259,7 +259,7 @@ If the entry exist in the database, the result will be:
 
 Now that we've generated some application code, we can run it and test that it works as we intended.
 
-Make sure the Docker daemon is running and follow along.
+Make sure the Docker daemon is running ([installation instructions](https://docs.docker.com/get-docker/)) and follow along.
 
 ```
 ~/Documents/temple-tutorial ❯❯❯ source deploy.sh
