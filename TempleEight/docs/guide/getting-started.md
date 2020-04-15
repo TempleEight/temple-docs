@@ -270,12 +270,11 @@ The following output details all of the microservices being built with Docker, a
 Let's check that the services are running:
 
 ```
-~/Documents/temple-tutorial ❯❯❯ docker ps
-CONTAINER ID        IMAGE                             COMMAND                  CREATED             STATUS                             PORTS                                                                NAMES
-70a8f71808ba        kong:2.0.1                        "/docker-entrypoint.…"   11 seconds ago      Up 6 seconds (health: starting)    0.0.0.0:8000-8001->8000-8001/tcp, 0.0.0.0:8443-8444->8443-8444/tcp   temple-tutorial_kong_1
-a8268807294b        postgres:12.1                     "docker-entrypoint.s…"   12 seconds ago      Up 11 seconds                      5432/tcp                                                             temple-tutorial_example-service-db_1
-b47e17988b56        postgres:12.1                     "docker-entrypoint.s…"   12 seconds ago      Up 11 seconds (health: starting)   5432/tcp                                                             temple-tutorial_kong-db_1
-993e4397ad18        temple-tutorial_example-service   "./example-service"      12 seconds ago      Up 11 seconds                      0.0.0.0:1026->1026/tcp                                               temple-tutorial_example-service_1
+~/Documents/temple-tutorial ❯❯❯ docker ps --format '{{.Image}}'
+kong:2.0.1
+postgres:12.1
+postgres:12.1
+temple-tutorial_example-service
 ```
 
 And everything seems to be looking good.
