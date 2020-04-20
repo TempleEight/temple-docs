@@ -1,7 +1,7 @@
 ---
 id: installation
-title: Installation Guide
-sidebar_label: Installation Guide
+title: Installation
+sidebar_label: Installation
 ---
 
 Welcome to the Temple installation guide!

@@ -9,7 +9,7 @@ Welcome to the complete Temple getting started guide!
 
 This tutorial will walk you through developing your own applications with Temple, from start to finish.
 
-We're going to assume you've already installed the Temple CLI, as per the [Installation Guide](../installation). 
+We're going to assume you've already installed the Temple CLI, as per the [Installation](installation) guide. 
 > If you'd like to verify this, run `temple --version`, output should be `temple X.X.X (c) 2020 TempleEight`
 
 
@@ -29,7 +29,7 @@ The Templefile is the heart of the project, it contains all of the information t
 
 A Templefile is any text file with the `.temple` extension. 
 
-For a full reference of the Templefile language, check out the [Templefile Spec](../reference/templefile-spec).
+For a full reference of the Templefile language, check out the [Templefile Specification](reference/templefile-spec).
 
 We'll build an example Templefile from the ground up with minimal features, and add more over the rest of the guides.
 
@@ -54,7 +54,7 @@ This is the name Temple uses for your project globally.
 Then, inside the project block there are a number of metadata items that tell us things about the project on a global scale.
 
 Metadata definitions begin with `#` characters and tell us something about a project or a service, and how it interacts with other services. 
-For a full list of all valid metadata, see the [Templefile Spec](../reference/templefile-spec).
+For a full list of all valid metadata, see the [Templefile Specification](reference/templefile-spec).
 
 Here, we define the server language for all services to be Golang, and the database backing everything up to be Postgres.
 While these two blocks are defined on the project level, they can also be overridden at the service level, if you for example wanted a certain service to be in a different language.
@@ -79,7 +79,7 @@ Service block can contain two kinds of declarations: *Property definitions* and 
 
 Property declarations tell us about the kind of data belonging to the entity this service describes. 
 For example, here we say that `ExampleService` has a `foo`  which is a `string` property, and a `bar`, which is an `int` property. 
-Property declarations can either be a [*primitive* datatype](../reference/primitives), or be a [*foreign key*](cross-service-coms) to another service.
+Property declarations can either be a [*primitive* datatype](reference/templefile-primitives), or be a [*foreign key*](guide/foreign-keys) to another service.
 
 Every service in Temple also has an implicit `id` property, which assigns a `UUID` to each entity stored in a service, used for foreign keys and authentication.
 
@@ -161,13 +161,13 @@ kong
 We'll break these outputs down to understand what each one means. 
 
 * `/example-service/` - This directory contains the Go code for the `ExampleService` we defined earlier.
-A full description of this can be seen in the [Golang Reference](../reference/golang)
+A full description of this can be seen in the [Golang Reference](reference/golang)
 
 * `/example-service-db/` - This directory contains the SQL init scripts for the database backing the `ExampleService`.
 These scripts manage the database schema and define which fields are stored.
 
 * `/api/` -This directory contains the OpenAPI specification for the project, used for generating target application code.
-Full details can be seen in the [OpenAPI Reference](../reference/openapi)
+Full details can be seen in the [OpenAPI Reference](reference/openapi)
 
 * `/kong/` - Temple projects use [Kong](https://konghq.com/kong/) as an API Gateway, which routes traffic from outside of the application to the correct microservice internally. 
 The `kong` directory contains a configuration script that needs to run after all services have been deployed. 
@@ -176,7 +176,7 @@ Full details are available in the [Ingress Guide](ingress).
 
 * `/docker-compose.yml` - This file defines how to orchestrate all of the services in `docker-compose`, including Kong. 
 If Kubernetes were used instead of `docker-compose` for orchestration, this file would be replaced with a `kube` folder. 
-See the [Orchestration Guide](orchestration). 
+See the [Orchestration Guide](guide/orchestration). 
 
 * `/deploy.sh` - This shell script is an automated way to deploy the application **for local development** , including running all initialization steps and setting environment variables. 
 
@@ -331,10 +331,10 @@ It can be a very useful way of end-to-end testing the application, verifying all
 
 This concludes our end to end walkthrough of the Temple ecosystem. For next steps, continue through the more advanced pages of the tutorial, or jump ahead:
 
-* Add [Access Control](access-control) to your services, and learn to [Enumerate services by others](enumeration)
-* Implement security policies through through the [Authentication Guide](authentication)
-* Create complex relationships between entities with the [Cross-Service Communication Guide](cross-service-coms)
-* Take a look at expanding the generated application with custom business logic in the [Business Logic Guide](business-logic)
-* Constrain the values allowed to be stored by your services in the [Value Annotations Guide](value-annotations)
-* Try different orchestration methods, described in the [Orchestration Guide](orchestration)
-* Implement a metrics monitoring suite, detailed in the [Metrics Guide](metrics)
+* Add [Access Control](guide/access-control) to your services, and learn to [Enumerate services by others](enumeration)
+* Implement security policies through through the [Authentication Guide](guide/authentication)
+* Create complex relationships between entities with the [Cross-Service Communication Guide](guide/foreign-keys)
+* Take a look at expanding the generated application with custom business logic in the [Business Logic Guide](guide/hooks)
+* Constrain the values allowed to be stored by your services in the [Value Annotations Guide](guide/value-annotations)
+* Try different orchestration methods, described in the [Orchestration Guide](guide/rchestration)
+* Implement a metrics monitoring suite, detailed in the [Metrics Guide](guide/metrics)
