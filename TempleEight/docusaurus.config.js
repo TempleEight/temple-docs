@@ -2,10 +2,10 @@ module.exports = {
   title: 'Temple',
   tagline: 'makes it easy to get new microservices up and running, at lightning speed',
   url: 'https://templeeight.github.io/temple-docs/',
-  baseUrl: '/',
+  baseUrl: '/temple-docs',
   favicon: 'img/favicon.ico',
   organizationName: 'TempleEight', // Usually your GitHub org/user name.
-  projectName: 'temple', // Usually your repo name.
+  projectName: 'temple-docs', // Usually your repo name.
   themeConfig: {
     navbar: {
       title: 'Temple',
