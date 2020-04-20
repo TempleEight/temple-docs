@@ -5,7 +5,7 @@ module.exports = {
   baseUrl: '/',
   favicon: 'img/favicon.ico',
   organizationName: 'TempleEight', // Usually your GitHub org/user name.
-  projectName: 'temple', // Usually your repo name.
+  projectName: 'temple-docs', // Usually your repo name.
   themeConfig: {
     navbar: {
       title: 'Temple',
