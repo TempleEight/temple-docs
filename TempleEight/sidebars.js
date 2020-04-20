@@ -8,7 +8,7 @@
 module.exports = {
   someSidebar: {
     'The Basics': ['welcome', 'installation'],
-    'Tutorial': ['guide/getting-started', 'guide/access-control', 'guide/authentication', 'guide/cross-service-coms', 'guide/enumeration', 'guide/metrics', 'guide/orchestration', 'guide/value-annotations', 'guide/business-logic'],
+    'Tutorial': ['guide/getting-started', 'guide/access-control', 'guide/authentication', 'guide/cross-service-coms', 'guide/enumeration', 'guide/metrics', 'guide/orchestration', 'guide/value-annotations', 'guide/business-logic', 'guide/custom-handlers'],
     'Reference': ['reference/contents','reference/templefile-spec', 'reference/primitives'],
   },
 };

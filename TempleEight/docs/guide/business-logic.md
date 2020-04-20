@@ -11,7 +11,7 @@ We'll be using the `ExampleProject` from the [getting started guide](getting-sta
 
 ## Adding custom logic
 In the `example-service` directory, you'll find the following files and folders:
-```
+```bash
 ~/Documents/temple-tutorial ❯❯❯ ls -1 example-service
 Dockerfile
 config.json
@@ -25,7 +25,7 @@ util
 
 We're most interested in `setup.go` for this guide, which is where you can add additional logic that won't be lost if you need to regenerate your Templefile.
 
-This file should start off looking fairly empty:
+This file will start off looking fairly empty:
 
 ```go
 package main
@@ -48,8 +48,10 @@ This may include logic for additional validation of request parameters or provid
 
 ## Registering a hook 
 Within the `env` object that the `setup` method is defined on, you will find an attribute called `hook`.
-Hook is a struct that is defined in `hook.go`, which defines two methods for each endpoint:
+Hook is a struct that is defined in `hook.go`, which defines two methods for each endpoint. These are named `Before<endpoint>` and `After<endpoint>`, where `<endpoint>` may be any one of `Create`, `Read`, `Update`, `Delete`, `List` or `Identify`.
+More information on these endpoints can be found in [TODO](the-go-section?).
 
+For our example project, the two methods for the `Create` endpoint are as follows:
 ```go
 func (h *Hook) BeforeCreate(hook func(env *env, req createExampleServiceRequest, input *dao.CreateExampleServiceInput) *HookError) {
   ...
@@ -60,12 +62,13 @@ func (h *Hook) AfterCreate(hook func(env *env, exampleService *dao.ExampleServic
 }
 
 ```
-By defining a function that matches the argument type defined here, we are able to execute arbitrary code before or after the datastore interaction for each endpoint.
-The types of each hook vary, depending on the operation they are defined on.
-Where a request body is not provided, such as in a GET request, the `req` argument is ommited from the hook.
+By defining a function that matches the argument type defined here, then passing it to the function, we are able to execute arbitrary code before or after the datastore interaction for each endpoint.
+The types of each hook vary, depending on the operation they are defined for.
+For example, where a request body is not provided, such as in a GET request, the `req` argument is omitted from the hook.
 
+If we modify our `setup.go` to include a new function called `ourCustomHook`, where the arguments to the function match those for the `BeforeCreate` argument, we can register a new hook that will be invoked every time a new create request is issued.
 
-We are able to define a hook that is executed before an object is created, by modifying `setup.go` to read:
+Our code will now read:
 
 ```go
 package main
@@ -76,21 +79,228 @@ import (
 )
 
 func (env *env) setup(router *mux.Router) {
-	env.hook.BeforeCreate(beforeCreateHook)
+	env.hook.BeforeCreate(ourCustomBeforeHook)
 }
 
-func beforeCreateHook(env *env, req createExampleServiceRequest, input *dao.CreateExampleServiceInput) *HookError {
+func ourCustomBeforeHook(env *env, req createExampleServiceRequest, input *dao.CreateExampleServiceInput) *HookError {
 	return nil
 }
 ```
 
-// TODO
 ## Modifying the DAO request
+Now that we have defined our custom hook, we can start populating it with additional logic.
+To start, we will show how you can modify the DAO request.
+The DAO provides a common interface to access a backing store, without directly exposing the implementation details of doing so.
+More information about this can be found in [TODO](the-go-section.md)
+
+The custom hook we defined takes 3 parameters:
+- the environment, `env`
+- the request provided by the user, `req`
+- the input to the datastore request, `input`
+
+The input object is passed as a pointer, which gets directly passed to the DAO after the hook invocation and will be used as the query for the datastore.
+This means if we update any attributes of this object, the data store call will be updated too.
+In the following example, we modify all `Create` requests to the datastore so that each `foo` property contains the string "Hello, World!".
+
+```go
+package main
+
+import (
+	"github.com/gorilla/mux"
+	"github.com/temple/tutorial/example-service/dao"
+)
+
+func (env *env) setup(router *mux.Router) {
+	env.hook.BeforeCreate(ourCustomBeforeHook)
+}
+
+func ourCustomBeforeHook(env *env, req createExampleServiceRequest, input *dao.CreateExampleServiceInput) *HookError {
+	input.Foo = "Hello, world!"
+	return nil
+}
+```
+If we perform some example requests, we see that our hook updates the object that is stored, irrespective of what was passed in the request:
+
+```bash
+# Create a new object
+❯❯❯ curl -X POST $KONG_ENTRY/api/example-service -d '{"foo": "abcd", "bar": 10}'
+{"id":"43cc65f5-823c-11ea-9dc4-0242ac180003","foo":"Hello, world!","bar":10}
+
+# Retrieve that same object 
+❯❯❯ curl -X GET $KONG_ENTRY/api/example-service/43cc65f5-823c-11ea-9dc4-0242ac180003
+{"id":"43cc65f5-823c-11ea-9dc4-0242ac180003","foo":"Hello, world!","bar":10}
+```
+
+
+## Conditionally updating the datastore input
+As well as updating the datastore request, we could also use the user's request to conditionally update certain fields:
+```go
+package main
+
+import (
+	"github.com/gorilla/mux"
+	"github.com/temple/tutorial/example-service/dao"
+)
+
+func (env *env) setup(router *mux.Router) {
+	env.hook.BeforeCreate(ourCustomBeforeHook)
+}
+
+func ourCustomBeforeHook(env *env, req createExampleServiceRequest, input *dao.CreateExampleServiceInput) *HookError {
+	if (req.Bar == 5) {
+		input.Foo = "Hello, world!"
+	}
+	return nil
+}
+```
+
+This will only update the value of `Foo` if the value 5 is passed for bar: 
+
+```bash
+# Create a new object where Bar != 5
+❯❯❯ curl -X POST $KONG_ENTRY/api/example-service -d '{"foo": "abcd", "bar": 10}'
+{"id":"e8e2e06e-823c-11ea-84ea-0242ac170003","foo":"abcd","bar":10}
+
+# Create a new object where Bar == 5
+❯❯❯ curl $KONG_ENTRY/api/example-service -d '{"foo": "abcd", "bar": 5}'
+{"id":"f244e8f0-823c-11ea-84ea-0242ac170003","foo":"Hello, world!","bar":5}
+```
 
 ## Modifying the response to the client
+As well as creating a hook that is invoked before the datastore call, we are able to define a hook that is invoked after the datastore call.
+For the same `ExampleService` as the previous examples, a hook invoked after creating an object would look like:
+
+```go
+package main
+
+import (
+	"github.com/gorilla/mux"
+	"github.com/temple/tutorial/example-service/dao"
+)
+
+func (env *env) setup(router *mux.Router) {
+	env.hook.AfterCreate(ourCustomAfterHook)
+}
+
+func ourCustomAfterHook(env *env, exampleService *dao.ExampleService) *HookError {
+	return nil
+}
+```
+There are only two arguments to this function:
+- the environment, `env`
+- the newly created object, `exampleService`
+
+We are able to modify the object that has just been created, before it is returned to the client, by updating the attributes of the object `exampleService`:
+
+
+```go
+package main
+
+import (
+	"github.com/gorilla/mux"
+	"github.com/temple/tutorial/example-service/dao"
+)
+
+func (env *env) setup(router *mux.Router) {
+	env.hook.AfterCreate(ourCustomAfterHook)
+}
+
+func ourCustomAfterHook(env *env, exampleService *dao.ExampleService) *HookError {
+	exampleService.Bar = 42
+	return nil
+}
+```
+Since this only modifies the response to the client, and not what's stored in the datastore, the value will not be modified in any subsequent GET requests:
+
+```shell
+# Create a new object
+❯❯❯ curl $KONG_ENTRY/api/example-service -d '{"foo": "abcd", "bar": 10}'
+{"id":"12bff66e-8243-11ea-9908-0242ac180003","foo":"abcd","bar":42}
+
+# Retrieve that same object
+❯❯❯ curl -X GET $KONG_ENTRY/api/example-service/12bff66e-8243-11ea-9908-0242ac180003
+{"id":"12bff66e-8243-11ea-9908-0242ac180003","foo":"abcd","bar":10}
+```
 
 ## Making additional DAO calls
+One thing we have not yet discussed is the `env` argument to each of the hooks.
+The environment gives you access to the DAO as well as methods for accessing cross service communication.
+
+This means you can perform additional database requests as part of your `Before` or `After` hook.
+
+These can include the predefined database calls, or your own.
+For more information on this, see [defining custom handlers and DAO methods](custom-handlers.md).
+
+For example, before updating a given entry, you may want to check what is already stored, and modify the update request accordingly:
+
+```go
+package main
+
+import (
+	"github.com/gorilla/mux"
+	"github.com/temple/tutorial/example-service/dao"
+)
+
+func (env *env) setup(router *mux.Router) {
+	env.hook.BeforeUpdate(ourCustomBeforeUpdateHook)
+}
+
+func ourCustomBeforeUpdateHook(env *env, req updateExampleServiceRequest, input *dao.UpdateExampleServiceInput) *HookError {
+	current, _ := env.dao.ReadExampleService(dao.ReadExampleServiceInput{
+		ID: input.ID,
+	})
+
+	// Modify the update query if what is currently stored is > 10
+	if current.Bar > 10 {
+		input.Bar = current.Bar
+	}
+
+	return nil
+}
+```
+
 
 ## Aborting Requests
+Finally, Hooks give you the ability to abort requests early, by returning a `HookError` from the hook.
 
-## Registering a new endpoint with the router
+For example, we could use this to disallow any requests where the value of `Bar` is greater than 10:
+
+```go
+package main
+
+import (
+	"errors"
+	"net/http"
+
+	"github.com/gorilla/mux"
+	"github.com/temple/tutorial/example-service/dao"
+)
+
+func (env *env) setup(router *mux.Router) {
+	env.hook.BeforeCreate(ourCustomBeforeHook)
+}
+
+func ourCustomBeforeHook(env *env, req createExampleServiceRequest, input *dao.CreateExampleServiceInput) *HookError {
+	if input.Bar > 10 {
+		return &HookError{
+			statusCode: http.StatusBadRequest,
+			error:      errors.New("The value of bar must be less than or equal to 10"),
+		}
+	}
+	return nil
+}
+```
+
+Running some example requests:
+
+```bash
+# An example request where bar <= 10
+❯❯❯ curl $KONG_ENTRY/api/example-service -d '{"foo": "abcd", "bar": 5}'
+{"id":"1ee638c1-8246-11ea-aef0-0242ac180003","foo":"abcd","bar":5}
+
+# An example request where bar > 10
+❯❯❯ curl $KONG_ENTRY/api/example-service -d '{"foo": "abcd", "bar": 15}'
+{"error":"The value of bar must be less than or equal to 10"}
+
+```
+
