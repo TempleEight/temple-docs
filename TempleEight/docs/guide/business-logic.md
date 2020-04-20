@@ -25,7 +25,7 @@ util
 
 We're most interested in `setup.go` for this guide, which is where you can add additional logic that won't be lost if you need to regenerate your Templefile.
 
-This file should start off looking fairly empty:
+This file will start off looking fairly empty:
 
 ```go
 package main
@@ -64,11 +64,11 @@ func (h *Hook) AfterCreate(hook func(env *env, exampleService *dao.ExampleServic
 ```
 By defining a function that matches the argument type defined here, then passing it to the function, we are able to execute arbitrary code before or after the datastore interaction for each endpoint.
 The types of each hook vary, depending on the operation they are defined for.
-For example, where a request body is not provided, such as in a GET request, the `req` argument is ommited from the hook.
+For example, where a request body is not provided, such as in a GET request, the `req` argument is omitted from the hook.
 
 If we modify our `setup.go` to include a new function called `ourCustomHook`, where the arguments to the function match those for the `BeforeCreate` argument, we can register a new hook that will be invoked every time a new create request is issued.
 
-Our code should now read:
+Our code will now read:
 
 ```go
 package main
@@ -154,7 +154,7 @@ func ourCustomBeforeHook(env *env, req createExampleServiceRequest, input *dao.C
 }
 ```
 
-This should only update the value of `Foo` if the value 5 is passed for bar: 
+This will only update the value of `Foo` if the value 5 is passed for bar: 
 
 ```bash
 # Create a new object where Bar != 5
@@ -220,8 +220,8 @@ Since this only modifies the response to the client, and not what's stored in th
 # Retrieve that same object
 ❯❯❯ curl -X GET $KONG_ENTRY/api/example-service/12bff66e-8243-11ea-9908-0242ac180003
 {"id":"12bff66e-8243-11ea-9908-0242ac180003","foo":"abcd","bar":10}
-
 ```
+
 ## Making additional DAO calls
 One thing we have not yet discussed is the `env` argument to each of the hooks.
 The environment gives you access to the DAO as well as methods for accessing cross service communication.
