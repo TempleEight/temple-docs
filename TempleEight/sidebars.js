@@ -27,8 +27,8 @@ module.exports = {
         'guide/access-control', 'guide/foreign-keys',
         'guide/omitting-endpoints', 'guide/enumeration', 'guide/hooks',
         'guide/adding-endpoints', 'guide/adding-dao-functions',
-        'guide/regeneration', 'guide/orchestration', 'guide/metrics',
-        'guide/temple-test'
+        'guide/orchestration', 'guide/metrics', 'guide/temple-test',
+        'guide/regeneration'
       ],
     },
     {
