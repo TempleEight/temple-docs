@@ -90,6 +90,9 @@ func ourCustomBeforeHook(env *env, req createExampleServiceRequest, input *dao.C
 ## Modifying the DAO request
 Now that we have defined our custom hook, we can start populating it with additional logic.
 To start, we will show how you can modify the DAO request.
+The DAO provides a common interface to access a backing store, without directly exposing the implementation details of doing so.
+More information about this can be found in [TODO](the-go-section.md)
+
 The custom hook we defined takes 3 parameters:
 - the environment, `env`
 - the request provided by the user, `req`
@@ -116,7 +119,7 @@ func ourCustomBeforeHook(env *env, req createExampleServiceRequest, input *dao.C
 	return nil
 }
 ```
-If we perform some example requests, we see that our kooh updates the object that is stored, irrespective of what was passed in the request:
+If we perform some example requests, we see that our hook updates the object that is stored, irrespective of what was passed in the request:
 
 ```bash
 # Create a new object
