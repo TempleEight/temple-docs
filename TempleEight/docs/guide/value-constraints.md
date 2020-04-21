@@ -4,8 +4,8 @@ title: Value Constraints
 sidebar_label: Value Constraints
 ---
 
-Sometimes you need more control over the values that are acceptable in your data model, for these cases Temple provides a suite of Value Constraints:
-extra metadata you can attach to properties that allow values to be restricted in some way.
+Sometimes you need more control over the values that are acceptable in your data model.
+For these cases Temple provides a suite of Value Constraints: extra metadata you can attach to properties that allow values to be restricted in some way.
 
 ## Primitive Restrictions
 
@@ -20,7 +20,7 @@ ExampleService: service {
 }
 ```
 
-If for example we wanted to constrain the `bar` property to be only positive numbers, we could write:
+If, for example, we wanted to constrain the `bar` property to be only positive numbers, we could write:
 
 ```
 ExampleService: service {
@@ -40,7 +40,7 @@ ExampleService: service {
 ```
 
 Most of the primitives in Temple support similar parameters. 
-The full list of parameters can be found in the [Primitives](reference/primitives) section of the Templefile reference.
+The full list of parameters can be found in the [primitives](reference/primitives) section of the Templefile reference.
 
 ## Annotations
 
