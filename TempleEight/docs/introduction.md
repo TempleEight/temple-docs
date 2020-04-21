@@ -1,12 +1,12 @@
 ---
-id: welcome
-title: Welcome!
-sidebar_label: Welcome
+id: introduction
+title: Introduction
+sidebar_label: Introduction
 ---
 
 ### If you're here, it's because you want to know about Temple: 
 
-> Know about Temple and just want to get going? Check out the [Getting Started Guide](guide/getting-started)
+> Know about Temple and just want to get going? Check out the [Getting Started](getting-started) guide
 
 
 **Temple** is a software framework for automatically generating routine microservices based on a high level DSL, leaving you to focus on the business logic specific to your system.
@@ -29,11 +29,11 @@ Decided that you need to change your Temple configuration half way through devel
 
 ## Get Going
 
-First, make sure you've installed the Temple CLI by following the [Installation Guide](installation).
+First, make sure you've installed the Temple CLI by following the [Installation](installation) instructions.
 
-If you need some pointers in the right direction, check out the [Tutorial](guide/getting-started).
+If you need some pointers in the right direction, check out the [Getting Started](getting-started) guide.
 
-For specific details about any part of the Temple ecosystem, there's the [Full Reference](reference/contents).
+For specific details about Templefiles, there's the [Templefile Specification](reference/templefile-spec).
 
 ## Currently Supported
 

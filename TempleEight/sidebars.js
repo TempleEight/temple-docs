@@ -6,9 +6,48 @@
  */
 
 module.exports = {
-  someSidebar: {
-    'The Basics': ['welcome', 'installation'],
-    'Tutorial': ['guide/getting-started', 'guide/access-control', 'guide/authentication', 'guide/cross-service-coms', 'guide/enumeration', 'guide/metrics', 'guide/orchestration', 'guide/value-annotations', 'guide/business-logic', 'guide/custom-handlers'],
-    'Reference': ['reference/contents','reference/templefile-spec', 'reference/primitives'],
-  },
+  docsSidebar: [
+    {
+      type: 'doc',
+      id: 'introduction',
+    },
+    {
+      type: 'doc',
+      id: 'installation',
+    },
+    {
+      type: 'doc',
+      id: 'getting-started',
+    },
+    {
+      type: 'category',
+      label: 'Guides',
+      items: [
+        'guide/value-annotations', 'guide/authentication',
+        'guide/access-control', 'guide/foreign-keys',
+        'guide/omitting-endpoints', 'guide/enumeration', 'guide/hooks',
+        'guide/adding-endpoints', 'guide/adding-dao-functions',
+        'guide/orchestration', 'guide/metrics', 'guide/temple-test',
+        'guide/regeneration'
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Generated Architecture',
+      items: ['arch/system', 'arch/service'],
+    },
+    {
+      type: 'category',
+      label: 'Reference',
+      items: [
+        'reference/templefile-spec', 'reference/templefile-primitives', {
+          type: 'category',
+          label: 'Example Templefiles',
+          items: [
+            'reference/example-templefiles/airbnb',
+          ]
+        }
+      ]
+    }
+  ]
 };

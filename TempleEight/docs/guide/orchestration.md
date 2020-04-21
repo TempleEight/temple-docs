@@ -1,5 +1,5 @@
 ---
 id: orchestration
-title: Deploying Services
-sidebar_label: Deploying Services
+title: Orchestration
+sidebar_label: Orchestration
 ---
