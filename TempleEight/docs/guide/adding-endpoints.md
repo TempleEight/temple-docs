@@ -3,3 +3,115 @@ id: adding-endpoints
 title: Adding Endpoints
 sidebar_label: Adding Endpoints
 ---
+
+As with all services, you're eventually going to want to add more functionality than the basic CRUD endpoints we generate for you.
+So that you don't have to rewrite entire sections of your application, we've made it easy to add new endpoints to your service, with full access to any functions we've predefined for you.
+
+This short guide will walk you through how to add addtional endpoints to your application, using the `ExampleProject` from the [getting started guide](getting-started).
+We'll also assume you have a fairly good understanding of the Go language.
+
+## Adding a new endpoint
+In the `example-service` directory, you'll find the following files and folders:
+
+```
+example-service
+├── Dockerfile
+├── config.json
+├── dao
+│   ├── dao.go
+│   ├── datastore.go
+│   └── errors.go
+├── example-service.go
+├── go.mod
+├── go.sum
+├── hook.go
+├── setup.go
+└── util
+    └── util.go
+```
+
+We're most interested in `setup.go` for this guide, which is where you can add additional logic that won't be lost if you need to regenerate your Templefile.
+
+This file will start off looking fairly empty:
+
+```go
+package main
+
+import "github.com/gorilla/mux"
+
+func (env *env) setup(router *mux.Router) {
+    // Add user defined code here
+}
+```
+
+The `setup` method defined on `env` is invoked before the HTTP server is started.
+This means you can:
+
+- register hooks, to be executed before or after any database calls (see the [hooks](hooks) guide for more information)
+- add additional endpoints
+
+## Adding new endpoints
+The `setup` function in `setup.go` defines a function which takes a `mux.Router` as an argument. 
+When we generate each endpoint, we register it with this router.
+For more information about mux, check out [their documentation](http://www.gorillatoolkit.org/pkg/mux).
+
+You're able to take advantage of all of mux's features, including registering new endpoints.
+
+We'll start off by adding a new route, and defining a handler for that route:
+
+```go
+package main
+
+import (
+	"net/http"
+
+	"github.com/gorilla/mux"
+)
+
+func (env *env) setup(router *mux.Router) {
+	router.HandleFunc("/example-service/{id}/custom-endpoint", env.CustomHandler).Methods(http.MethodGet)
+}
+
+func (env *env) CustomHandler(w http.ResponseWriter, r *http.Request) {
+
+}
+```
+
+The handler we define here follows type required by the `mux.Router`.
+One important difference is that we define the handler on the `env` object.
+This is so that we are able to access the DAO, Hooks as well as `Comm`, an object for providing inter-service communication, from inside the handler.
+
+Let's populate the handler with an error response, since we haven't quite decided what we want the handler to do yet:
+
+```go {14}
+package main
+
+import (
+	"net/http"
+
+	"github.com/gorilla/mux"
+)
+
+func (env *env) setup(router *mux.Router) {
+	router.HandleFunc("/example-service/{id}/custom-endpoint", env.CustomHandler).Methods(http.MethodGet)
+}
+
+func (env *env) CustomHandler(w http.ResponseWriter, r *http.Request) {
+	respondWithError(w, "TODO!", http.StatusTeapot)
+}
+```
+
+Let's now spin up our project and try some requests:
+
+
+```bash
+❯❯❯ source deploy.sh
+
+# Create a new entity
+❯❯❯ curl -X POST $KONG_ENTRY/api/example-service -d '{"foo": "hello", "bar": 123}'
+{"id":"7bbe6302-8413-11ea-80e8-0242c0a83002","foo":"hello","bar":123}
+
+# Use the new endpoint
+❯❯❯ curl -X GET $KONG_ENTRY/api/example-service/7bbe6302-8413-11ea-80e8-0242c0a83002/custom-endpoint
+{"error":"TODO!"}
+```
