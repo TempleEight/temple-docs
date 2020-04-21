@@ -5,7 +5,7 @@ sidebar_label: Adding DAO Functions
 ---
 
 The DAO provides an interface between a datastore and application code.
-It's main objective is to decouple the actual datastore interactions and business logic such as validation or JSON encoding.
+Its main objective is to decouple the actual datastore interactions and business logic such as validation or JSON encoding.
 
 As part of a `Temple` project, we generate a DAO for each service, so that regardless of datastore chosen, the handler logic will be the same. 
 More information on this can be found in [Service Architecture](../arch/service).
@@ -14,10 +14,10 @@ Within the generated DAO you will find methods for performing the standard `Crea
 These queries are very simple: they perform the minimum the query required to extract all the data stored within the system.
 
 There are times where these standard queries are not sufficient to perform the query you require, so we designed `Temple` to allow for additional DAO methods.
+This guide will walk you through how to add new DAO functions to your project, using the `ExampleService` defined in the [Getting Started](../getting-started) guide.
 
 ## Adding a new DAO function 
-We'll be using the example service defined in the [Getting Started](../getting-started) guide.
-The Templefile we defined was as followed:
+The Templefile we defined in the [Getting Started](../getting-started) guide was as follows:
 
 ```
 ExampleProject: project {
@@ -32,7 +32,7 @@ ExampleService: service {
 }
 ```
 
-After generating the project, you will find 3 files in the `dao` folder:
+In the `example-service` directory, you will find 3 files in the `dao` folder:
 
 ```
 example-service/dao
