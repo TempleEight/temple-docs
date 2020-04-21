@@ -27,6 +27,9 @@ module.exports = {
       copyright: `Copyright © ${
           new Date().getFullYear()} TempleEight. Built with Docusaurus.`,
     },
+    prism: {
+      additionalLanguages: ['swift'],
+    },
   },
   presets: [
     [

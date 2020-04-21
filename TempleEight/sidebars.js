@@ -28,7 +28,7 @@ module.exports = {
         'guide/omitting-endpoints', 'guide/enumeration', 'guide/hooks',
         'guide/adding-endpoints', 'guide/adding-dao-functions',
         'guide/orchestration', 'guide/metrics', 'guide/temple-test',
-        'guide/regeneration'
+        'guide/regeneration', 'guide/open-api'
       ],
     },
     {
