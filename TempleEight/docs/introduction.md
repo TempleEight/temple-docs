@@ -29,7 +29,7 @@ Decided that you need to change your Temple configuration half way through devel
 
 ## Get Going
 
-First, make sure you've installed the Temple CLI by following the [Installation](installation) guide.
+First, make sure you've installed the Temple CLI by following the [Installation](installation) instructions.
 
 If you need some pointers in the right direction, check out the [Getting Started](getting-started) guide.
 

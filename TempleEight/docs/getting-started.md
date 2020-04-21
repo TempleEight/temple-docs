@@ -9,7 +9,7 @@ Welcome to the complete Temple getting started guide!
 
 This tutorial will walk you through developing your own applications with Temple, from start to finish.
 
-We're going to assume you've already installed the Temple CLI, as per the [Installation](installation) guide. 
+We're going to assume you've already installed the Temple CLI, as per the [Installation](installation) instructions. 
 > If you'd like to verify this, run `temple --version`, output should be `temple X.X.X (c) 2020 TempleEight`
 
 
