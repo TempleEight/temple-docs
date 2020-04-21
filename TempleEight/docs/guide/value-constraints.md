@@ -25,11 +25,10 @@ If, for example, we wanted to constrain the `bar` property to be only positive n
 ```
 ExampleService: service {
   foo: string;
-  bar: int(0);
+  bar: int(min: 0);
 }
 ```
 
-As when the integer property is given a single parameter, it's the minimum bound on the value. 
 If we wanted to restrict it between two numbers, for example 0 and 100, we'd write:
 
 ```
@@ -39,6 +38,10 @@ ExampleService: service {
 }
 ```
 
+Notice that here we didn't provide the argument names to the `int` definitions, as they're optional.
+However, when only a single argument is provided to the `int` definition, it defaults to the `max` argument.
+By using the `min:` name, we can specify the `min` without the `max`.
+
 Most of the primitives in Temple support similar parameters. 
 The full list of parameters can be found in the [primitives](reference/primitives) section of the Templefile reference.
 
@@ -47,6 +50,8 @@ The full list of parameters can be found in the [primitives](reference/primitive
 In addition to restricting individual values with primitive parameters, Temple supports adding service-level constraints with annotations.
 
 Currently there is one supported annotation, with more being planned to be released in the future.
+
+### Unique
 
 By adding an `@unique` annotation to any property of a service, then at most one data object stored by the service may have a particular value stored in that property.
 For example:
@@ -61,6 +66,16 @@ ExampleService: service {
 Means that the `bar` property on every `ExampleService` object must be unique.
 
 One could create an ExampleService object with values `foo = "test"` and `bar = 3`, but then no other object could have the value `bar = 3`. 
+We can test this by running:
+
+```bash
+~/Documents/temple-tutorial ❯❯❯ curl -X POST $KONG_ENTRY/api/example-service -d '{"foo": "value!", "bar": 10}'
+{"id":"e24e6d58-83e7-11ea-b435-0242ac1d0003","foo":"value!","bar":10}
+
+~/Documents/temple-tutorial ❯❯❯ curl -X POST $KONG_ENTRY/api/example-service -d '{"foo": "another value!", "bar": 10}'
+{"error":"Something went wrong: pq: duplicate key value violates unique constraint \"example_service_bar_key\""}
+```
+
 
 When combined with property value level constraints, one could limit the total number of `ExampleService` objects that could exist at any one time.
 For example:
