@@ -34,7 +34,7 @@ If we wanted to restrict it between two numbers, for example 0 and 100, we'd wri
 ```
 ExampleService: service {
   foo: string;
-  bar: int(0, 100);
+  bar: int(100, 0);
 }
 ```
 
@@ -65,14 +65,14 @@ ExampleService: service {
 
 Means that the `bar` property on every `ExampleService` object must be unique.
 
-One could create an ExampleService object with values `foo = "test"` and `bar = 3`, but then no other object could have the value `bar = 3`. 
+We could create an ExampleService object with values `foo = "test"` and `bar = 3`, but then no other object could have the value `bar = 3`. 
 We can test this by running:
 
 ```bash
-~/Documents/temple-tutorial ❯❯❯ curl -X POST $KONG_ENTRY/api/example-service -d '{"foo": "value!", "bar": 10}'
+❯❯❯ curl -X POST $KONG_ENTRY/api/example-service -d '{"foo": "value!", "bar": 10}'
 {"id":"e24e6d58-83e7-11ea-b435-0242ac1d0003","foo":"value!","bar":10}
 
-~/Documents/temple-tutorial ❯❯❯ curl -X POST $KONG_ENTRY/api/example-service -d '{"foo": "another value!", "bar": 10}'
+❯❯❯ curl -X POST $KONG_ENTRY/api/example-service -d '{"foo": "another value!", "bar": 10}'
 {"error":"Something went wrong: pq: duplicate key value violates unique constraint \"example_service_bar_key\""}
 ```
 
@@ -83,7 +83,7 @@ For example:
 ```
 ExampleService: service {
   foo: string;
-  bar: int(1, 100) @unique;
+  bar: int(100, 1) @unique;
 }
 ```
 
