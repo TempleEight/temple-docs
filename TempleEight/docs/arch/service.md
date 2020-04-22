@@ -8,6 +8,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 This section will describe the architecture of an individual service.
 We'll use the `ExampleService` from the the [Getting Started](../getting-started.md) guide to illustrate the core service architecture.
 Once covered, we'll look at how optional features such as inter-service communication and metrics slot in.
+Finally, there's an FAQ section to answer common questions about our architecture. 
 
 ## Libraries
 Before we get started, here are the `go` libraries we're using:
@@ -163,3 +164,12 @@ Which will add the following to our service file tree
 
 Which predictably makes up the `metric` package.
 This simply provides predefined metric variables ready for invoking metric calls in the handlers, see [Metrics](../guide/metrics.md) for more details.
+
+## FAQ
+
+### Why didn't you use ORM (Object-Relation Mapping)?
+We have a few reasons for this:
+- They abstract most of the database code meaning it can be hard to implement certain queries
+- They can be a bottleneck, by building our own database layer we can keep it simple and make future extensions easier
+- Some languages don't have a good ORM solution
+- It's yet another dependency, one you the developer may not want
