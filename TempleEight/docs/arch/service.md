@@ -18,7 +18,7 @@ ExampleService: service {
 }
 ```
 
-And here is the corresponding generated file tree:
+Here is the corresponding generated file tree:
 ```
 ├── Dockerfile
 ├── config.json
@@ -42,7 +42,7 @@ This leaves us with files that fit into one of three packages:
  - `util` - houses miscellaneous utility functions
 
 ## The `main` Package
-This package, as you would expect, does most of the heavy lifting. In our example, it includes the following files:
+This package, as you would expect, does most of the heavy lifting. In our example, it includes the following files at the service root directory:
 ```
 ├── example-service.go
 ├── hook.go
