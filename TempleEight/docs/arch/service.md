@@ -9,6 +9,14 @@ This section will describe the architecture of an individual service.
 We'll use the `ExampleService` from the the [Getting Started](../getting-started.md) guide to illustrate the core service architecture.
 Once covered, we'll look at how optional features such as inter-service communication and metrics slot in.
 
+## Libraries
+Before we get started, here are the `go` libraries we're using:
+
+- [gorilla/mux](https://github.com/gorilla/mux) - for routing requests
+- [lib/pq](https://github.com/lib/pq) - for interfacing with the backing datastore
+- [go-playground/validator](https://github.com/go-playground/validator) - for validating request body parameters
+- [google/uuid](https://github.com/google/uuid) - for handling all things UUID
+
 ## Service File Tree
 As a reminder, here is the `ExampleService` block from the [Getting Started](../getting-started.md) guide:
 ```
