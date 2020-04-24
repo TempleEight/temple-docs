@@ -27,7 +27,7 @@ We'll also assume you have some understanding of Swift, although it's syntax is 
 
 ## Generating the Client Library
 
-The project we generated as part of the [getting started](../getting-started) contains an `api` folder, which contains a single `YAML` file:
+The project we generated as part of the [Getting Started](../getting-started) contains an `api` folder, which contains a single `YAML` file:
 
 ```
 api
@@ -48,12 +48,14 @@ This generates a new folder on the desktop with the OpenAPI client inside.
 Next we'll setup a fresh Xcode project that uses this library.
 
 First, open Xcode, and from the menu bar select File > New > Project:
-<img alt="Create a new Xcode project" src={useBaseUrl('img/xcode-new-project.png')} />
+<p align="center">
+<img alt="Create a new Xcode project" src={useBaseUrl('img/xcode-new-project.png')} width="50%"/>
+</p>
 
 Then select Single View App:
 <img alt="Create a new iOS App" src={useBaseUrl('img/xcode-new-ios.png')} />
 
-Fill in your project details as necessary and save the project:
+Fill in your project details as necessary, making sure to choose **Storyboard** for the User Interface, and then save the project:
 <img alt="Create a new iOS App" src={useBaseUrl('img/xcode-new-ios-detail.png')} />
 
 Now - close the Xcode window that just appeared and reopen your terminal.
@@ -109,11 +111,13 @@ Following this, install the dependencies with:
 ❯❯❯ pod install
 ```
 
-This will instruct you to use the `.xcworkspace` generated in this directory from now on, which we will now open in Xcode:
+:::important
+This will instruct you to use the `.xcworkspace` generated in this directory from now on, instead of the normal Xcode project.
+:::
 
 <img alt="Xcode workspace" src={useBaseUrl('img/xcode-workspace.png')} />
 
-All of the code will be written in this class from now on, but if you're a Swift expert, feel free to create your own.
+All of the code will be written in the `ViewController.swift` class from now on, but if you're a Swift expert, feel free to create your own.
 
 ## Starting the server for local development
 
@@ -137,7 +141,7 @@ This second step gave us the base URL where requests to our API can be made.
 Now, back in the Xcode project, we can tell the client where to make requests by settings the `basePath` property of the client, like so:
 
 
-```swift
+```swift {2,7}
 import UIKit
 import OpenAPIClient
 
@@ -151,7 +155,7 @@ class ViewController: UIViewController {
 
 Now we can make a sample call to the `ExampleService`, as follows:
 
-```swift
+```swift {8-13}
 import UIKit
 import OpenAPIClient
 
@@ -181,9 +185,9 @@ Since iOS only allows to make requests from URLs which are secure, we have to ma
 From the project overview on the left of the Xcode window, open `Info.plist` and add the key "App Transport Security Settings", which should then contain the key "Allow Arbitrary Loads", set to "YES". 
 Your final `Info.plist` should resemble:
 
-
-<img alt="Update the info.plist" src={useBaseUrl('img/xcode-transport.png')} />
-
+<p align="center">
+<img alt="Update the info.plist" src={useBaseUrl('img/xcode-transport.png')} width="50%" />
+</p>
 
 ## Building the Project
 We can now go ahead and build the Xcode project, by going to the Menu Bar: Product > Run
@@ -196,7 +200,7 @@ Protocol type 'Any' cannot conform to 'Decodable' because only concrete types ca
 ```
 
 This is an issue with the OpenAPI generator for Swift.
-A simple workaround is to find the offending line, by double clicking the error message, and replace occurences of the type `Any` in that function with `[String: String]`
+A simple workaround is to find the offending line, by double clicking the error message, and replace occurences of the type `Any` in that function with `[String: String]`, including the function return type.
 
 :::
 
