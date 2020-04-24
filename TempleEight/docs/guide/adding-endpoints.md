@@ -10,7 +10,7 @@ So that you don't have to rewrite entire sections of your application, we've mad
 This short guide will walk you through how to add addtional endpoints to your application, using the `ExampleProject` from the [getting started guide](getting-started).
 We'll also assume you have a fairly good understanding of the Go language.
 
-## Adding a new endpoint
+## Customising Your Service
 In the `example-service` directory, you'll find the following files and folders:
 
 ```
@@ -50,7 +50,7 @@ This means you can:
 - register hooks, to be executed before or after any database calls (see the [hooks](hooks) guide for more information)
 - add additional endpoints
 
-## Adding new endpoints
+## Adding New Endpoints
 The `setup` function in `setup.go` defines a function which takes a `mux.Router` as an argument. 
 When we generate each endpoint, we register it with this router.
 For more information about mux, check out [their documentation](http://www.gorillatoolkit.org/pkg/mux).
