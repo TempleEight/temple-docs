@@ -30,7 +30,7 @@ example-service
     └── util.go
 ```
 
-We're most interested in `setup.go` for this guide, which is where you can add additional logic that won't be lost if you need to regenerate your Templefile.
+We're most interested in `setup.go` for this guide, which is where you can add additional logic that won't be lost if you need to regenerate your Templefile (see the [Regeneration](regeneration) guide for more on this).
 
 This file will start off looking fairly empty:
 
