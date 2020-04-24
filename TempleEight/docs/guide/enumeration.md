@@ -44,7 +44,7 @@ ExampleService: service {
 }
 ```
 
-This generates a new endpoint, accessible at `/api/example-service/all`, and this will return all stored elements as a JSON list.
+This generates a new endpoint, accessible at `/api/example-service/all`, and this will return all stored elements as a JSON array.
 Let's make some example requests to show it in action:
 
 ```bash
@@ -100,8 +100,10 @@ ExampleService: service {
 }
 ```
 
-Now when making requests to the `ExampleService` we'll need to include an authorization header.
-Let's show an example of listing:
+When making requests to the `ExampleService` we'll now need to include an authorization header.
+To do this, we're going to first make a request to the `auth` service, and extract the token from the JSON response using [jq](https://stedolan.github.io/jq/).
+
+Let's look at an example of this altogether listing:
 
 ```bash
 # Deploy the project locally
@@ -213,4 +215,6 @@ By default any service with a `#auth` block are implicitly `#readable(by: this)`
 This means that it is not possible to have an `#enumerable` tag on an `#auth` service, since this would only ever return the list containing the entity for that access token.
 
 However, if the readability of the service is expanded to `#readable(by: all)`, usage of `#enumerable` is permitted, and will return all entities in that service.
+
+If you would like to add a list endpoint with your own logic for filtering the outputs, see the [adding endpoints](adding-endpoints) guide.
 :::
