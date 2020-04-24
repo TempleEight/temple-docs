@@ -4,14 +4,14 @@ title: Omitting Endpoints
 sidebar_label: Omitting Endpoints
 ---
 
-Whenever you define a new service in your `Templefile`, we automatically generate 4 endpoints:
+Whenever you define a new service in your `Templefile`, the following 4 endpoints are automatically generated:
 
 1. `CREATE`: Create a new object with the provided attributes
 2. `READ`: Read an existing object for a given ID
 3. `UPDATE`: Update an existing object with the new provided attributes, using the ID
 4. `DELETE`: Delete an object from the datastore, using the ID
 
-Sometimes you might not want this endpoint at all, or might want to define your own custom implementation, as is shown in the [adding endpoints](adding-endpointsmd) guide.
+Sometimes you might not want a particular endpoint at all, or might want to define your own custom implementation, as is shown in the [adding endpoints](adding-endpointsmd) guide.
 To remove the endpoint from the generated code, you can include additional metadata within your Templefile.
 
 
