@@ -229,7 +229,7 @@ The environment gives you access to the DAO as well as methods for accessing cro
 This means you can perform additional database requests as part of your `Before` or `After` hook.
 
 These can include the predefined database calls, or your own.
-For more information on this, see [defining custom handlers and DAO methods](custom-handlers.md).
+For more information on this, see [adding DAO functions](adding-dao-functions).
 
 For example, before updating a given entry, you may want to check what is already stored, and modify the update request accordingly:
 
