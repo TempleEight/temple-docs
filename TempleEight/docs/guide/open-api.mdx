@@ -25,7 +25,7 @@ We'll also assume you have some understanding of Swift, although it's syntax is 
 [A Swift Tour](https://docs.swift.org/swift-book/GuidedTour/GuidedTour.html) can be found on the official Swift website.
 
 
-## Generating the client library
+## Generating the Client Library
 
 The project we generated as part of the [getting started](../getting-started) contains an `api` folder, which contains a single `YAML` file:
 
@@ -175,7 +175,7 @@ We then also include a callback, which checks that the response exists otherwise
 If it does exist, we output it to the console.
 
 
-## Allowing a local host
+## Allowing a `localhost` Connection
 Since iOS only allows to make requests from URLs which are secure, we have to make a slight modification to the project in order to make a `localhost` service accessible.
 
 From the project overview on the left of the Xcode window, open `Info.plist` and add the key "App Transport Security Settings", which should then contain the key "Allow Arbitrary Loads", set to "YES". 
@@ -185,7 +185,7 @@ Your final `Info.plist` should resemble:
 <img alt="Update the info.plist" src={useBaseUrl('img/xcode-transport.png')} />
 
 
-## Building the project
+## Building the Project
 We can now go ahead and build the Xcode project, by going to the Menu Bar: Product > Run
 <img alt="Update the info.plist" src={useBaseUrl('img/xcode-run.png')} />
 
