@@ -16,7 +16,7 @@ These queries are very simple: they perform the minimum the query required to ex
 There are times where these standard queries are not sufficient to perform the query you require, so we designed `Temple` to allow for additional DAO methods.
 This guide will walk you through how to add new DAO functions to your project, using the `ExampleService` defined in the [Getting Started](../getting-started) guide.
 
-## Adding a new DAO function 
+## Adding a New DAO Function
 The Templefile we defined in the [Getting Started](../getting-started) guide was as follows:
 
 ```
