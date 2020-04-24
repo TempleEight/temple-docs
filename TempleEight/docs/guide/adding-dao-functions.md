@@ -32,7 +32,7 @@ ExampleService: service {
 }
 ```
 
-In the `example-service` directory, you will find 3 files in the `dao` folder:
+In the `example-service/dao` director, you will find 3 files:
 
 ```
 example-service/dao
@@ -48,7 +48,7 @@ This might be useful to use as a reference for how to write additional DAO funct
 
 - `errors.go` contains errors that can be returned from the DAO.
 
-Opening up `datastore.go`, you'll find end empty interface called `Datastore` which extends the `BaseDatastore` defined in `dao.go`:
+Opening up `datastore.go`, you'll find an empty interface called `Datastore` which extends the `BaseDatastore` defined in `dao.go`:
 
 ```go
 package dao
@@ -90,7 +90,7 @@ We're doing 4 key things here:
 
 1. Defining the method in the interface
 2. Defining the method on the object DAO, which is an implementation of the `Datastore` interface
-3. Populating the method using utility methods defined in `dao.go`
+3. Populating the body using utility methods defined in `dao.go`
 4. Returning the response or error to the caller
 
 Any code you add in this file will not be removed if you need to regenerate the Temple project based on some updates to your Templefile.
