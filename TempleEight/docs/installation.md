@@ -8,12 +8,12 @@ Welcome to the Temple installation guide!
 
 In order to get using Temple, you'll need to install the *Temple CLI*. 
 
-## Prerequisites 
+## Prerequisites
 
-The Temple CLI requires [Java](https://java.com/en/download/help/download_options.xml) to run.
+If installing locally, the Temple CLI requires [Java](https://java.com/en/download/help/download_options.xml) to run.
+We also support installation via a [Docker](https://www.docker.com) image.
 
 In order to build and orchestrate generated services, you'll need:
-
 * [Docker](https://www.docker.com/)
 * For projects orchestrated with Docker-Compose: 
     * [docker-compose](https://docs.docker.com/compose/)
@@ -32,24 +32,42 @@ import TabItem from '@theme/TabItem';
   values={[
     { label: 'MacOS', value: 'macos', },
     { label: 'Linux', value: 'linux', },
-    { label: 'Windows', value: 'windows', },
+    { label: 'Docker Image', value: 'docker', },
   ]
 }>
+
 <TabItem value="macos">
 Installation is via <a href="https://brew.sh/">Homebrew</a>.
 To install, run:
-<code>~ ❯❯❯ brew tap templeeight/temple</code><br/>
-<code>~ ❯❯❯ brew install temple</code>
+<code>❯❯❯ brew tap templeeight/temple</code>
+<code>❯❯❯ brew install temple</code>
 </TabItem>
-<TabItem value="linux">This is an orange 🍊</TabItem>
-<TabItem value="windows">This is a banana 🍌</TabItem>
+
+<TabItem value="linux">
+Install by grabbing the latest release from <a href="https://github.com/TempleEight/temple/releases">GitHub</a>:
+<code>❯❯❯ wget -O /usr/bin/temple https://github.com/TempleEight/temple/releases/download/v0.1.0/temple-latest </code>
+<code>❯❯❯ chmod +x /usr/bin/temple</code>
+</TabItem>
+
+<TabItem value="docker">
+A Docker image is available on Docker Hub:
+<code>❯❯❯ docker run templeeight/temple:0.1 </code>
+</TabItem>
 </Tabs>
 
 ## Confirmation
 
-To confirm that the TempleCLI has been installed correctly, run:
+To confirm that the Temple CLI has been installed locally, run:
 
 ```
-~ ❯❯❯ temple --version
+❯❯❯ temple --version
 temple 0.1.0 (c) 2020 TempleEight
 ```
+
+If you're using Docker, run:
+
+```
+❯❯❯ docker run templeeight/temple:0.1 temple --version 
+temple 0.1.0 (c) 2020 TempleEight
+```
+
