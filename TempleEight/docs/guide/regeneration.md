@@ -25,7 +25,7 @@ To invoke the regeneration process, simply run `temple generate` with an output 
 For example, first generate the project the first time:
 
 ```bash
-~/Documents/temple-tutorial ❯❯❯ temple generate example.temple
+❯❯❯ temple generate example.temple
 What should the Go module name be? (expected format "github.com/username/repo")
 github.com/temple/tutorial
 Generated project in /path/Documents/temple-tutorial
@@ -51,7 +51,7 @@ func (env *env) setup(router *mux.Router) {
 Next, we're going to regenerate the project, but we'll notice that the changes we just made will persist.
 
 ```bash
-~/Documents/temple-tutorial ❯❯❯ temple generate example.temple
+❯❯❯ temple generate example.temple
 
 What should the Go module name be? (expected format "github.com/username/repo")
 github.com/temple/tutorial
@@ -65,8 +65,6 @@ These files will not be touched to preserve business logic:
 
 Do you want to continue? (Y/N)
 y
-
-Generated project in /Users/lewiky/Projects/TempleEight/temple-tutorial
  ```
 
  If we check the file we changed earlier, we'll see that the changes we made are still present.
