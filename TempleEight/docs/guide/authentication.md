@@ -104,7 +104,7 @@ Note that we implicitly require the email address to be unique, such that one em
 
 ### Login
 The `login` endpoint again requires a POST request with a JSON object containing an `email` and `password` key.
-In response, it will also return an access token that will be used to authenticate subsequent requetss.
+In response, it will also return an access token that will be used to authenticate subsequent requests.
 If the email doesn't exist, or the password is incorrect, an error will be returned.
 
 ```bash
@@ -141,13 +141,12 @@ Now we included a valid token in the Authorization header, the request was autho
 You may have noticed that so far we have ignored the `ExampleUser` service we previously defined. 
 That's because it acts as any other service, so any example given in this guide could have been replace with a call to that service too.
 
-However, it has one distinguishing feature: a single token is only able to create a single entity in this service. 
-This means means that there is a one-to-one mapping between the `Auth` service, and an entity in the `ExampleUser` service.
+However, it has one distinguishing feature: a single token is only able to create a single entity in this service.
+This means means that there is at most a one-to-one mapping between an entity in the `Auth` service, and an entity in the `ExampleUser` service.
 This makes the `ExampleUser` service perfect for storing additional metadata about a user, such as their name, address or anything that fits your business needs.
 
 ## How Authentication is Implemented
-Behind the scenes, lots of additional code is executed when authentication is added to your project, to protect your data and your users.
-To best explain this let's consider how a new user registers with your service:
+To best explain the changes made when authentication is added to your project let's consider how a new user registers with your service:
 
 #### Pre-request Preparation
 Before any request is even issued to your `Auth` service, several steps are taken:
