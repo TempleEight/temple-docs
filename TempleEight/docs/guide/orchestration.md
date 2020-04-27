@@ -9,7 +9,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 With distributed systems, equally important as the application is the way that it's orchestrated. 
 Temple provides several industry standards methods of automatically deploying your services.
 
-## Templefile Changes
+## Adding Orchestration to your Templefile
 
 Orchestrating your project automatically requires only a single line of code in your Templefile.
 Working from the example in the [Getting Started](../getting-started) guide:
@@ -44,7 +44,8 @@ It receives all requests from the user, performs actions like verifying their au
 
 Temple makes use of the existing [Kong API Gateway](https://docs.konghq.com/2.0.x/getting-started/quickstart/) for this purpose, and automatically generates all the configuration it requires.
 
-The only considerations you as the user needs to make is that when you try to make requests to any of your deployed services, the requests need to be addressed to Kong's URL.
+An API Gateway provides a single entry point into your project infrastructure, meaning it can direct requests to deployed services whether they are on a single machine or multiple machines.
+To do this, requests need to be addressed to Kong's URL.
 Temple's tooling automatically sets this URL into an environment variable called `$KONG_ENTRY`. 
 
 As previously mentioned, Kong also handles some end-user authentication, when it's used in your project.
@@ -52,7 +53,7 @@ See the [Authentication](authentication) Guide for full details of this.
 
 ## Docker Compose
 
-[Docker Compose](https://docs.docker.com/compose/) is a tool built into the docker ecosystem for orchestrating containers.
+[Docker Compose](https://docs.docker.com/compose/) is a tool built into the Docker ecosystem for orchestrating containers.
 We recommend using it for local development, as running your services this way has comparatively little overhead.
 However it doesn't allow for some more advanced features like automatically replicating and distributing services across different machines out of the box.
 
@@ -67,17 +68,17 @@ When the `dockerCompose` provider is selected, Temple generates three important 
 ```
 
 First, we'll talk about `docker-compose.yml`.
-This file acts to instruct Docker-Compose on how to manage your services. 
+This file acts to instruct Docker Compose on how to manage your services. 
 It specifies, for each service, which Docker image should be used in the container, any volume mounts, and environment variables needed.
 It also defines networking, allowing certain services to speak to others (for example, only one service should be able to communicate with each database).
 
 `kong/configure-kong.sh` is a script that is ran once the docker-compose infrastructure is running.
-It sends a series of `cURL` requests to the `Kong` API gateway which configures it to route requests it receives to the correct service, and to deal with any auth required 
-(see the [Auth](authentication) Guide, and the [Kong Documentation](https://docs.konghq.com/2.0.x/getting-started/quickstart/)).
+It sends a series of `cURL` requests to the `Kong` API gateway which configures it to route requests it receives to the correct service, and to deal with any authentication required.
+(see the [Authentication](authentication) Guide, and the [Kong Documentation](https://docs.konghq.com/2.0.x/getting-started/quickstart/)).
 
 Finally the `deploy.sh` script is a shell script to automate starting your application.
 This file performs all of the steps needed to get everything running correctly, including setting the `$KONG_ENTRY` and `$KONG_ADMIN` environment variables.
-In order for these variables to remain set for the remainder of your terminal session, it needs to be ran with the `source` command.
+In order for these variables to remain set for the remainder of your terminal session, it needs to be run with the `source` command.
 
 For example, start the Docker daemon (See the [Docker docs](https://docs.docker.com/)):
 
@@ -87,7 +88,7 @@ For example, start the Docker daemon (See the [Docker docs](https://docs.docker.
 
 A lot of output will be presented, detailing each step of the deployment process, and any errors that occurred. 
 
-Verify everything worked by checking the environment variables.
+Verify the system was configured correctly by checking the environment variables:
 
 ```shell
 ❯❯❯ echo $KONG_ENTRY 
