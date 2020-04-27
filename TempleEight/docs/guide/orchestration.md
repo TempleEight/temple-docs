@@ -5,12 +5,11 @@ sidebar_label: Orchestration
 ---
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-
-With distributed systems, equally important as the application is the way that it's orchestrated. 
+Considering how your application components are orchestrated is important as the components themselves.
 Temple provides several industry standards methods of automatically deploying your services.
 
 ## Adding Orchestration to your Templefile
-
+l
 Orchestrating your project automatically requires only a single line of code in your Templefile.
 Working from the example in the [Getting Started](../getting-started) guide:
 
@@ -30,9 +29,7 @@ We can see here that the Templefile features a `#provider` annotation in the pro
 This is how we specify that our project uses orchestration, the name in the argument specifies which framework we are generating for.
 
 The currently supported frameworks are:
-
 * Docker Compose
-
 * Kubernetes
 
 All of the frameworks are generated to share a common toolchain, so that usage is the same no matter which you choose.
@@ -77,10 +74,10 @@ It sends a series of `cURL` requests to the `Kong` API gateway which configures 
 (see the [Authentication](authentication) Guide, and the [Kong Documentation](https://docs.konghq.com/2.0.x/getting-started/quickstart/)).
 
 Finally the `deploy.sh` script is a shell script to automate starting your application.
-This file performs all of the steps needed to get everything running correctly, including setting the `$KONG_ENTRY` and `$KONG_ADMIN` environment variables.
+This file performs all of the steps needed to get everything running correctly, including runnning the `configure-kong.sh` script and setting the `$KONG_ENTRY` and `$KONG_ADMIN` environment variables.
 In order for these variables to remain set for the remainder of your terminal session, it needs to be run with the `source` command.
 
-For example, start the Docker daemon (See the [Docker docs](https://docs.docker.com/)):
+Assuming you have the Docker daemon up and running, lets spin up our application:
 
 ```shell 
 ❯❯❯ source deploy.sh
@@ -97,6 +94,9 @@ localhost:8000
 ❯❯❯ echo $KONG_ADMIN
 localhost:8001
 ```
+
+At this point, you're free to make requests to your services.
+In order to access them, address requests to Kong's ingress URL: `$KONG_ENTRY/api/{service-name}/{endpoint}` and Kong will forward the request to the right place.
 
 Once you are finished with your infrastructure, everything can be cleanly shut down with:
 
@@ -173,3 +173,4 @@ In order to shut down your cluster and delete any config it's left behind, run:
 🔥  Deleting "minikube" in virtualbox ...
 💀  Removed all traces of the "minikube" cluster.
 ```
+
