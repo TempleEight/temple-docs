@@ -45,6 +45,10 @@ module.exports = {
           label: 'Example Templefiles',
           items: [
             'reference/example-templefiles/airbnb',
+            'reference/example-templefiles/amazon',
+            'reference/example-templefiles/deliveroo',
+            'reference/example-templefiles/five-a-side',
+            'reference/example-templefiles/lockdown-shopping',
           ]
         }
       ]
