@@ -62,7 +62,7 @@ ExampleService: service {
 
 Means that the `bar` property on every `ExampleService` object must be unique.
 
-We could create an ExampleService object with values `foo = "test"` and `bar = 3`, but then no other object could have the value `bar = 3`. 
+We could create an ExampleService object with values `foo = "test"` and `bar = 10`, but then no other object could have the value `bar = 10`. 
 We can test this by running:
 
 ```bash
@@ -70,7 +70,7 @@ We can test this by running:
 {"id":"e24e6d58-83e7-11ea-b435-0242ac1d0003","foo":"value!","bar":10}
 
 ❯❯❯ curl -X POST $KONG_ENTRY/api/example-service -d '{"foo": "another value!", "bar": 10}'
-{"error":"Something went wrong: pq: duplicate key value violates unique constraint \"example_service_bar_key\""}
+{"error":"Duplicate ExampleService found"}
 ```
 
 
