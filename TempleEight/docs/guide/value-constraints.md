@@ -4,13 +4,12 @@ title: Value Constraints
 sidebar_label: Value Constraints
 ---
 
-Sometimes you need more control over the values that are acceptable in your data model.
+Sometimes you need more control over the values that are valid in your data model.
 For these cases Temple provides a suite of Value Constraints: extra metadata you can attach to properties that allow values to be restricted in some way.
 
 ## Primitive Restrictions
 
 Many of Temple's primitive data types support optional parameters when you declare them, to give bounds on their values.
-
 An example of this is when an integer is defined. We'll take the `ExampleService` from the [Getting Started](getting-started) guide:
 
 ```
@@ -41,19 +40,17 @@ ExampleService: service {
 Notice that here we didn't provide the argument names to the `int` definitions, as they're optional.
 However, when only a single argument is provided to the `int` definition, it defaults to the `max` argument.
 By using the `min:` name, we can specify the `min` without the `max`.
-
 Most of the primitives in Temple support similar parameters. 
-The full list of parameters can be found in the [primitives](reference/primitives) section of the Templefile reference.
+The full list of parameters can be found in the [Primitives](reference/primitives) section of the Templefile reference.
 
 ## Annotations
 
 In addition to restricting individual values with primitive parameters, Temple supports adding service-level constraints with annotations.
-
 Currently there is one supported annotation, with more being planned to be released in the future.
 
 ### Unique
 
-By adding an `@unique` annotation to any property of a service, then at most one data object stored by the service may have a particular value stored in that property.
+By adding a `@unique` annotation to a property, at most one object stored by the service may have a particular value stored for that property.
 For example:
 
 ```
