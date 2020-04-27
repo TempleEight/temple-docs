@@ -8,12 +8,12 @@ Welcome to the Temple installation guide!
 
 In order to get using Temple, you'll need to install the *Temple CLI*. 
 
-## Prerequisites 
+## Prerequisites
 
-The Temple CLI requires [Java](https://java.com/en/download/help/download_options.xml) to run.
+If installing locally, the Temple CLI requires [Java](https://java.com/en/download/help/download_options.xml) to run.
+We also support installation via a [Docker](https://www.docker.com) image.
 
 In order to build and orchestrate generated services, you'll need:
-
 * [Docker](https://www.docker.com/)
 * For projects orchestrated with Docker-Compose: 
     * [docker-compose](https://docs.docker.com/compose/)
@@ -23,6 +23,8 @@ In order to build and orchestrate generated services, you'll need:
 
 
 ## Installation Instructions
+We currently support direct installation on MacOS and Linux, as well as through a Docker container.
+Windows users are recommended to use the Docker container.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -32,24 +34,70 @@ import TabItem from '@theme/TabItem';
   values={[
     { label: 'MacOS', value: 'macos', },
     { label: 'Linux', value: 'linux', },
-    { label: 'Windows', value: 'windows', },
+    { label: 'Docker Image', value: 'docker', },
   ]
 }>
+
 <TabItem value="macos">
 Installation is via <a href="https://brew.sh/">Homebrew</a>.
 To install, run:
-<code>~ ❯❯❯ brew tap templeeight/temple</code><br/>
-<code>~ ❯❯❯ brew install temple</code>
+<code>❯❯❯ brew tap templeeight/temple</code>
+<code>❯❯❯ brew install temple</code>
 </TabItem>
-<TabItem value="linux">This is an orange 🍊</TabItem>
-<TabItem value="windows">This is a banana 🍌</TabItem>
+
+<TabItem value="linux">
+Install by grabbing the latest release from <a href="https://github.com/TempleEight/temple/releases">GitHub</a>:
+<code>❯❯❯ wget -O /usr/bin/temple https://github.com/TempleEight/temple/releases/download/v0.1.0/temple-latest </code>
+<code>❯❯❯ chmod +x /usr/bin/temple</code>
+</TabItem>
+
+<TabItem value="docker">
+A Docker image is available on Docker Hub:
+<code>❯❯❯ docker run templeeight/temple:0.1 </code>
+</TabItem>
 </Tabs>
 
 ## Confirmation
 
-To confirm that the TempleCLI has been installed correctly, run:
+To confirm that the Temple CLI has been installed locally, run:
 
 ```
-~ ❯❯❯ temple --version
+❯❯❯ temple --version
 temple 0.1.0 (c) 2020 TempleEight
 ```
+
+If you're using Docker, any commands you pass after the image name will be executed within the container. 
+To invoke `temple --version`, run:
+
+```
+❯❯❯ docker run templeeight/temple:0.1 temple --version
+temple 0.1.0 (c) 2020 TempleEight
+```
+
+## Additional Information for Docker Users
+:::important
+Since the Temple project involves the generation of code, you will need to mount a directory into the container so that files can be synchronised between the two environments.
+
+To do this, use the `-v` flag in `docker run` to create a bind mount from your local directory system into the container.
+
+For example, the following command mounts the directory `/Users/temple/project` into the container at the location `/home/project`, runs the Temple image, and invokes the temple binary with the flag `--version`.
+
+```bash
+docker run \
+-v /Users/temple/project:/home/project:rw \
+templeeight/temple:0.1 \
+temple --version
+```
+
+This also means that any paths you provide to the Temple executable will need to be using the container's file system and not the host's:
+
+```bash
+docker run \
+-v /Users/temple/project:/home/project:rw \
+templeeight/temple:0.1 \
+temple validate /home/project/example.templefile
+```
+
+
+
+:::
