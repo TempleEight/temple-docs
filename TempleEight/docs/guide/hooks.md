@@ -44,7 +44,7 @@ It gives you, the developer, the opportunity to:
 - register new endpoints with the router
 
 Hooks provide an interface for you to define custom logic that is executed before or after a specific database interaction.
-This may include logic for additional validation of request parameters or providing values to be stored that are not included in the request (see [value annotations](value-annotations.md) for more on this).
+This may include logic for additional validation of request parameters or providing values to be stored that are not included in the request (see [Value Constraints](value-constraints.md) for more on this).
 
 ## Registering a hook 
 Within the `env` object that the `setup` method is defined on, you will find an attribute called `hook`.
