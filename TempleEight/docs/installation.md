@@ -23,6 +23,8 @@ In order to build and orchestrate generated services, you'll need:
 
 
 ## Installation Instructions
+We currently support direct installation on MacOS and Linux, as well as through a Docker container.
+Windows users are recommended to use the Docker container.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -64,10 +66,38 @@ To confirm that the Temple CLI has been installed locally, run:
 temple 0.1.0 (c) 2020 TempleEight
 ```
 
-If you're using Docker, run:
+If you're using Docker, any commands you pass after the image name will be executed within the container. 
+To invoke `temple --version`, run:
 
 ```
-❯❯❯ docker run templeeight/temple:0.1 temple --version 
+❯❯❯ docker run templeeight/temple:0.1 temple --version
 temple 0.1.0 (c) 2020 TempleEight
 ```
 
+## Additional Information for Docker Users
+:::important
+Since the Temple project involves the generation of code, you will need to mount a directory into the container so that files can be synchronised between the two environments.
+
+To do this, use the `-v` flag in `docker run` to create a bind mount from your local directory system into the container.
+
+For example, the following command mounts the directory `/Users/temple/project` into the container at the location `/home/project`, runs the Temple image, and invokes the temple binary with the flag `--version`.
+
+```bash
+docker run \
+-v /Users/temple/project:/home/project:rw \
+templeeight/temple:0.1 \
+temple --version
+```
+
+This also means that any paths you provide to the Temple executable will need to be using the container's file system and not the host's:
+
+```bash
+docker run \
+-v /Users/temple/project:/home/project:rw \
+templeeight/temple:0.1 \
+temple validate /home/project/example.templefile
+```
+
+
+
+:::
