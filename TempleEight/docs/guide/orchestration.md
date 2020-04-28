@@ -5,12 +5,11 @@ sidebar_label: Orchestration
 ---
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Considering how your application components are orchestrated is important as the components themselves.
+Orchestration provides a fundamental building block of most modern service-oriented architectures, and Temple's generated projects are no exception.
 Temple provides several industry standards methods of automatically deploying your services.
 
 ## Adding Orchestration to your Templefile
-l
-Orchestrating your project automatically requires only a single line of code in your Templefile.
+Orchestrating your project automatically requires only a single line of configuration in your Templefile.
 Working from the example in the [Getting Started](../getting-started) guide:
 
 ```templefile {4}
@@ -64,8 +63,7 @@ When the `dockerCompose` provider is selected, Temple generates three important 
     └── configure-kong.sh
 ```
 
-First, we'll talk about `docker-compose.yml`.
-This file acts to instruct Docker Compose on how to manage your services. 
+`docker-compose.yml` instructs Docker Compose on how to manage your services. 
 It specifies, for each service, which Docker image should be used in the container, any volume mounts, and environment variables needed.
 It also defines networking, allowing certain services to speak to others (for example, only one service should be able to communicate with each database).
 
@@ -96,7 +94,7 @@ localhost:8001
 ```
 
 At this point, you're free to make requests to your services.
-In order to access them, address requests to Kong's ingress URL: `$KONG_ENTRY/api/{service-name}/{endpoint}` and Kong will forward the request to the right place.
+In order to access them, address requests to Kong's ingress URL: `$KONG_ENTRY/api/{service-name}/{entity-id}` and Kong will forward the request to the right place.
 
 Once you are finished with your infrastructure, everything can be cleanly shut down with:
 
@@ -145,15 +143,14 @@ As you can see, there are a lot more files generated here than for Docker Compos
 The `deploy.sh` and `configure-kong.sh` scripts serve the same purpose here as they do in the Docker Compose example, 
 although the mechanisms used to achieve this are different.
 
-The `push-image.sh` script builds docker images from each service generated in your project.
-Kubernetes requires all images used in your system to be hosted in a Docker [Registry](https://docs.docker.com/registry/). 
-As such, to aide in local development Temple's Kubernetes infrastructure features it's own registry, hosted in the Kubernetes cluster itself.
+The `push-image.sh` script builds Docker images from each service generated in your project.
+Since Kubernetes requires all images used in your system to be hosted in a [Docker Registry](https://docs.docker.com/registry/), Temple's Kubernetes infrastructure features it's own registry, hosted in the cluster itself.
 This script pushes all of the built images to this registry for K8s to use.
 
 The aforementioned registry has it's configuration files in the `kube/deploy` directory.
-The rest of the `kube` directory features the configuration `yaml` files for each other service managed by Kubernetes, including Kong.
+The rest of the `kube` directory features the `yaml` configuration files for each other service managed by Kubernetes, including Kong.
 
-To run this example, we assume you're running a local [`minikube`](https://minikube.sigs.k8s.io/docs/) cluster.
+To run this example, we assume you have [`minikube`](https://minikube.sigs.k8s.io/docs/) installed.
 See the Kubernetes documentation for a full reference on how to deploy your services into a production environment.
 
 Run your application with the same methods as with Docker Compose:
@@ -173,4 +170,3 @@ In order to shut down your cluster and delete any config it's left behind, run:
 🔥  Deleting "minikube" in virtualbox ...
 💀  Removed all traces of the "minikube" cluster.
 ```
-
