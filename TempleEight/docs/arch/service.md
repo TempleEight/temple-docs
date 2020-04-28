@@ -6,7 +6,7 @@ sidebar_label: Service Architecture
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
 This section will describe the architecture of an individual service.
-We'll use the `ExampleService` from the the [Getting Started](../getting-started.md) guide to illustrate the core service architecture.
+We'll use the `ExampleService` from the [Getting Started](../getting-started.md) guide to illustrate the core service architecture.
 Once covered, we'll look at how optional features such as inter-service communication and metrics slot in.
 Finally, there's an FAQ section to answer common questions about our architecture. 
 
