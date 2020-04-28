@@ -331,10 +331,11 @@ It can be a very useful way of end-to-end testing the application, verifying all
 
 This concludes our end to end walkthrough of the Temple ecosystem. For next steps, continue through the more advanced pages of the tutorial, or jump ahead:
 
-* Add [Access Control](guide/access-control) to your services, and learn to [Enumerate services by others](enumeration)
+* Add [Access Control](guide/access-control) to your services, and learn to [Enumerate services by others](guide/enumeration)
 * Implement security policies through through the [Authentication Guide](guide/authentication)
 * Create complex relationships between entities with the [Cross-Service Communication Guide](guide/foreign-keys)
 * Take a look at expanding the generated application with custom business logic in the [Business Logic Guide](guide/hooks)
 * Constrain the values allowed to be stored by your services in the [Value Constraints Guide](guide/value-constraints)
-* Try different orchestration methods, described in the [Orchestration Guide](guide/rchestration)
+* Modify the contents of your requests and responses using [Value Annotations](guide/value-annotations)
+* Try different orchestration methods, described in the [Orchestration Guide](guide/orchestration)
 * Implement a metrics monitoring suite, detailed in the [Metrics Guide](guide/metrics)

@@ -23,8 +23,8 @@ module.exports = {
       type: 'category',
       label: 'Guides',
       items: [
-        'guide/value-constraints', 'guide/authentication',
-        'guide/access-control', 'guide/foreign-keys',
+        'guide/value-constraints', 'guide/value-annotations',
+        'guide/authentication', 'guide/access-control', 'guide/foreign-keys',
         'guide/omitting-endpoints', 'guide/enumeration', 'guide/hooks',
         'guide/adding-endpoints', 'guide/adding-dao-functions',
         'guide/orchestration', 'guide/metrics', 'guide/temple-test',
