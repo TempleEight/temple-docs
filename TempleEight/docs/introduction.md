@@ -11,7 +11,7 @@ sidebar_label: Introduction
 
 **Temple** is a software framework for automatically generating routine microservices based on a high level DSL, leaving you to focus on the business logic specific to your system.
 
-Write a specification of your system in a **TempleFile**, and Temple will:
+Write a specification of your system in a **Templefile**, and Temple will:
 
 * Generate server code in a language of your choice for applying CRUD operations, for each service 👩‍💻
 

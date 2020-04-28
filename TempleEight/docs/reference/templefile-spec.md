@@ -1,10 +1,10 @@
 ---
 id: templefile-spec
-title: TempleFile Specification
+title: Templefile Specification
 sidebar_label: Templefile Specification
 ---
 
-# TempleFile DSL Specification
+# Templefile DSL Specification
 
 ## Primitives
 
