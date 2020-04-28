@@ -71,6 +71,8 @@ The default login is `admin` for both the username and password:
 
 <img alt="Grafana Login" src={useBaseUrl('img/grafana-login.png')}/>
 
+You may be prompted to change the default password, in which case set it to something memorable.
+
 After logging in, you'll want to head to the left-side bar, and select Dashboards > Manage Dashboards
 
 <p align="center">
@@ -91,7 +93,7 @@ However, we currently don't have any data to show in this dashboard, because no 
 
 ### Automating Requests
 You could now start making some manual requests to your service and see the associated metrics pop up on each panel.
-However, we've built an automated request framework directly into Temple, allowing you to mock requests from end users.
+However, we've built an automated request tool directly into Temple, allowing you to mock requests from end users.
 
 To do this, we're going to be using the `temple test` command.
 As explained in the [Temple Test](temple-test) guide, `temple test` has two main operating modes: 
@@ -104,7 +106,7 @@ In this guide we're going to be using the second mode.
 To invoke this, we're going to use the following command:
 
 ```bash
-❯❯❯ temple test --testOnly simple.temple
+❯❯❯ temple test --testOnly example.temple
 🧪 Testing ExampleService service
     ✅ ExampleService create
     ✅ ExampleService read
