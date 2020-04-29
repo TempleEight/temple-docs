@@ -5,7 +5,7 @@ sidebar_label: Value Annotations
 ---
 
 In addition to restricting individual values with primitive parameters, Temple supports adding service-level constraints with annotations.
-We'll start by considering the`ExampleService` from the [Getting Started](getting-started) guide:
+We'll start by considering the `ExampleService` from the [Getting Started](../getting-started) guide:
 
 ## Unique
 By adding a `@unique` annotation to a property, at most one object stored by the service may have a particular value stored for that property.
