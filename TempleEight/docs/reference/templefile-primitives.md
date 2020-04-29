@@ -4,7 +4,7 @@ title: Templefile Primitives
 sidebar_label: Templefile Primitives
 ---
 
-TempleFile supports 8 primitive types, roughly aligned with those found in `SQL` style languages. Any property of a service can be of any of these types. 
+Templefile supports 8 primitive types, roughly aligned with those found in `SQL` style languages. Any property of a service can be of any of these types. 
 
 ```temple
 bool

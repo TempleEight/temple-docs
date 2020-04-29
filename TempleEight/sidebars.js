@@ -23,12 +23,12 @@ module.exports = {
       type: 'category',
       label: 'Guides',
       items: [
-        'guide/value-annotations', 'guide/authentication',
+        'guide/value-constraints', 'guide/authentication',
         'guide/access-control', 'guide/foreign-keys',
         'guide/omitting-endpoints', 'guide/enumeration', 'guide/hooks',
         'guide/adding-endpoints', 'guide/adding-dao-functions',
         'guide/orchestration', 'guide/metrics', 'guide/temple-test',
-        'guide/regeneration'
+        'guide/regeneration', 'guide/open-api'
       ],
     },
     {
@@ -45,6 +45,10 @@ module.exports = {
           label: 'Example Templefiles',
           items: [
             'reference/example-templefiles/airbnb',
+            'reference/example-templefiles/amazon',
+            'reference/example-templefiles/deliveroo',
+            'reference/example-templefiles/five-a-side',
+            'reference/example-templefiles/lockdown-shopping',
           ]
         }
       ]

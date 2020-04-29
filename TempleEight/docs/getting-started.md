@@ -335,6 +335,6 @@ This concludes our end to end walkthrough of the Temple ecosystem. For next step
 * Implement security policies through through the [Authentication Guide](guide/authentication)
 * Create complex relationships between entities with the [Cross-Service Communication Guide](guide/foreign-keys)
 * Take a look at expanding the generated application with custom business logic in the [Business Logic Guide](guide/hooks)
-* Constrain the values allowed to be stored by your services in the [Value Annotations Guide](guide/value-annotations)
+* Constrain the values allowed to be stored by your services in the [Value Constraints Guide](guide/value-constraints)
 * Try different orchestration methods, described in the [Orchestration Guide](guide/rchestration)
 * Implement a metrics monitoring suite, detailed in the [Metrics Guide](guide/metrics)
