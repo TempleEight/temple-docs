@@ -69,7 +69,7 @@ As we add more features to our example Templefile, more infrastructure will be g
 
 ### Foreign Keys
 
-Each additional service added to our Templefile results in an additional replica of the the service specific infrastructure components seen above.
+Each additional service added to our Templefile results in an additional replica of the service specific infrastructure components seen above.
 
 Let's add an extra service to our Templefile as an example:
 
@@ -133,7 +133,7 @@ As per the [Authentication](../guide/authentication) guide,
 authentication can be added to your system by augmenting your Templefile to include `#auth` metadata on services, and a `#authMethod` annotation on the project block.
 For example:
 
-```templefile {5}{10}
+```templefile {5,10}
 ExampleProject: project {
   #language(go);
   #database(postgres);
