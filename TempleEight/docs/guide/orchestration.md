@@ -142,7 +142,7 @@ Change it to:
 ```
 127.0.0.1	localhost registry.me
 ```
-Then set the `$REG_URL` environment variable to be `registry.me` before running the `deploy.sh` script.
+Then set the `$REG_URL` environment variable to be `registry.me:5000` before running the `deploy.sh` script.
 :::
 
 The aforementioned registry has its configuration files in the `kube/deploy` directory.
