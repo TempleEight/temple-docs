@@ -6,7 +6,7 @@ sidebar_label: 5-a-Side
 
 The following Templefile is for a small sports company, that wants to provide their customers with a system for booking themselves onto 5-a-side football games. This could be extended to also provide a league/tournament system.
 
-```
+```templefile
 FiveASide: project {
   #language(go);
   #database(postgres);

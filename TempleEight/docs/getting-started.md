@@ -38,7 +38,7 @@ A Templefile has exactly one project block, and can have many service blocks.
 
 ### Project Block
 
-```
+```templefile
 ExampleProject: project {
   #language(go);
   #database(postgres);
@@ -63,7 +63,7 @@ This is a project level item only, and can't be overridden at the service level.
 
 ### Service Blocks
 
-```
+```templefile
 ExampleService: service {
   foo: string;
   bar: int;
@@ -89,7 +89,7 @@ Every service in Temple also has an implicit `id` property, which assigns a `UUI
 
 All together, our example Templefile is:
 
-```
+```templefile
 ExampleProject: project {
   #language(go);
   #database(postgres);

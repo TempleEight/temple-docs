@@ -12,7 +12,7 @@ For these cases Temple provides a suite of Value Constraints: extra metadata you
 Many of Temple's primitive data types support optional parameters when you declare them, to give bounds on their values.
 An example of this is when an integer is defined. We'll take the `ExampleService` from the [Getting Started](getting-started) guide:
 
-```
+```templefile
 ExampleService: service {
   foo: string;
   bar: int;
@@ -21,7 +21,7 @@ ExampleService: service {
 
 If, for example, we wanted to constrain the `bar` property to be only positive numbers, we could write:
 
-```
+```templefile
 ExampleService: service {
   foo: string;
   bar: int(min: 0);
@@ -30,7 +30,7 @@ ExampleService: service {
 
 If we wanted to restrict it between two numbers, for example 0 and 100, we'd write:
 
-```
+```templefile
 ExampleService: service {
   foo: string;
   bar: int(100, 0);
@@ -53,7 +53,7 @@ Currently there is one supported annotation, with more being planned to be relea
 By adding a `@unique` annotation to a property, at most one object stored by the service may have a particular value stored for that property.
 For example:
 
-```
+```templefile
 ExampleService: service {
   foo: string;
   bar: int @unique;
@@ -77,7 +77,7 @@ We can test this by running:
 When combined with property value level constraints, one could limit the total number of `ExampleService` objects that could exist at any one time.
 For example:
 
-```
+```templefile
 ExampleService: service {
   foo: string;
   bar: int(100, 1) @unique;

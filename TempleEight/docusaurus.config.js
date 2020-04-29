@@ -1,3 +1,4 @@
+const path = require('path');
 module.exports = {
   title: 'Temple',
   tagline: 'Generate microservice systems at lightning speed',
@@ -25,10 +26,11 @@ module.exports = {
     footer: {
       style: 'dark',
       copyright: `Copyright © ${
-          new Date().getFullYear()} TempleEight. Built with Docusaurus.`,
+        new Date().getFullYear()} TempleEight. Built with Docusaurus.`,
     },
     prism: {
       additionalLanguages: ['swift'],
+      theme: require('prism-react-renderer/themes/vsDark'),
     },
   },
   presets: [
@@ -38,7 +40,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           editUrl:
-              'https://github.com/TempleEight/temple-docs/edit/master/TempleEight',
+            'https://github.com/TempleEight/temple-docs/edit/master/TempleEight',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -46,4 +48,5 @@ module.exports = {
       },
     ],
   ],
+  plugins: [path.resolve(__dirname, './src/templefile')],
 };

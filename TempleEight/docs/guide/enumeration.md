@@ -14,7 +14,7 @@ We'll start with the most basic example, and then consider how the response chan
 ## A Basic List Endpoint
 In the [Getting Started](../getting-started) guide, we defined the following Templefile:
 
-```
+```templefile
 ExampleProject: project {
   #language(go);
   #database(postgres);
@@ -29,7 +29,7 @@ ExampleService: service {
 
 To add an additional `list` endpoint to our `ExampleService`, we can simply add the `#enumerable` metadata tag to that service:
 
-```
+```templefile
 ExampleProject: project {
   #language(go);
   #database(postgres);
@@ -78,7 +78,7 @@ This means that we can restrict responses to only include entities that the auth
 
 For example, let's add authentication to our `ExampleProject`, by including a `User` service, and using `email` as the `#authMethod`:
 
-```
+```templefile
 ExampleProject: project {
   #language(go);
   #database(postgres);
@@ -146,8 +146,7 @@ Sometimes it might be useful to return all entities that are stored, even when `
 To do this, you can widen the readability of the service using the `#readable(by: all)` metadata.
 If we apply this to our previous Templefile example:
 
-
-```
+```templefile
 ExampleProject: project {
   #language(go);
   #database(postgres);
