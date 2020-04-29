@@ -33,21 +33,20 @@ Also from the Getting Started Guide is this diagram outlining the system archite
 
 <img alt="Tutorial System Architecture" src={useBaseUrl('img/tutorial-architecture.png')} />
 
-It shows a high level description of the system, detailing how the [Kong API Gateway](https://konghq.com/kong/) sits between the user and the backend services, and how the service communicates with it's database.
+It shows a high level description of the system, detailing how the [Kong API Gateway](https://konghq.com/kong/) sits between the user and the backend services, and how the service communicates with its database.
 
 Let's delve a little bit deeper into this architecture and see some finer details:
 
 <img alt="System Architecture Deeper" src={useBaseUrl('img/system-architecture-basic.png')} />
 
-We can see that all components of our application are executing inside of [Docker](https://www.docker.com/) containers.
-This includes Kong, and allows us to not have to worry about it's installation, since our orchestration tool deals with this for us. 
+We can see that all components of our application are executed inside of [Docker](https://www.docker.com/) containers, including Kong.
+This allows us to not have to worry about installing it locally, giving this job to our orchestration tool. 
 Containers allow us to encapsulate our application components and their dependencies, allowing them to be easily ran anywhere, among many other benefits.
 
-We can also see that Kong uses it's own database to store information about which services exist and how to route requests to them.
+We can also see that Kong uses its own Postgres database to store information about which services exist and how to route requests to them.
 However, this is managed by the orchestration platform automatically, so we don't need to worry about it.
 
-All of the components of the system are deployed by the orchestration platform (see the [Orchestration](../guide/orchestration) Guide for full details). 
-The system architecture can change a little bit based on which platform is chosen. 
+All of the components of the system are deployed by the orchestration platform (see the [Orchestration](../guide/orchestration) guide for full details), however the system architecture can change a little bit based on which platform is chosen. 
 
 ### Docker Compose 
 
@@ -57,7 +56,7 @@ Since [Docker Compose](https://docs.docker.com/compose/) is a minimal orchestrat
 
 When [Kubernetes](https://kubernetes.io/) is used to orchestrate your platform, all of the Docker images used are required to be stored in a [Docker registry](https://docs.docker.com/registry/).
 To solve this issue, Temple integrates a registry into the Kubernetes infrastructure, and pushes all of the locally generated application images to it during the deployment process.
-Third party images like Kong or the Database used are all already stored in public repositories like [DockerHub](https://hub.docker.com).
+Third party images like Kong or the Database used are all already stored in public repositories like [Docker Hub](https://hub.docker.com).
 
 This changes our architecture diagram to look like this:
 
@@ -107,7 +106,7 @@ ExampleProject: project {
 ExampleService: service {
   foo: string;
   bar: int;
-  foreign-key: AnotherService;
+  foreignKey: AnotherService;
 }
 
 AnotherService: service {
@@ -125,11 +124,11 @@ On the project level, nothing changes, except the services use the hostname reso
 Adding a struct to a service in your Templefile represents two data items that are strongly coupled (see the [Struct](../guide/structs) guide for details).
 This is implemented in Temple generated projects by extending the parent's application executable to include the additional endpoints required to process struct requests.
 The struct's data is stored in a separate table of the service's database. 
-This means that when adding structs to your Templefile doesn't change the overall system-level architecture at all.
+This means that when adding structs to your Templefile, the overall system-level architecture doesn't change.
 
 ### Auth
 
-As per the [Authentication](../guide/authentication) Guide, 
+As per the [Authentication](../guide/authentication) guide, 
 authentication can be added to your system by augmenting your Templefile to include `#auth` metadata on services, and a `#authMethod` annotation on the project block.
 For example:
 
@@ -148,8 +147,8 @@ ExampleService: service {
 }
 ```
 
-These additions result in an additional `Auth` service being generated automatically that stores and verifies user credentials, and issues authentication tokens to users for use with other services.
-This is implemented by configuring Kong to check that any incoming requests have a valid [JWT](https://jwt.io/), except those destined for the auth service. 
+These additions result in an additional `Auth` service being automatically generated, taking care of storing and verifying user credentials as well as issuing authentication tokens to clients for use with other services.
+This is implemented by configuring Kong to check that any incoming requests have a valid [JWT](https://jwt.io/), except those destined for the `Auth` service. 
 Any requests that are not correctly authenticated do not pass Kong, so the internal microservices can be sure that all traffic has been correctly authenticated.
 
 Visually, the changes to our architecture look like:
@@ -177,7 +176,7 @@ ExampleService: service {
 }
 ```
 
-When a project has metrics, two more infrastructure components are needed, a Prometheus instance and a Grafana instance. 
+When a project has metrics, two more infrastructure components are needed, a Prometheus container and a Grafana container. 
 Prometheus is a metrics aggregator.
 Each service contains logic to aggregate metrics about it's performance, and forwards them on to the Prometheus instance, which collects and stores the metrics from all the services.
 Grafana exposes a HTTP endpoint which allows an administrator to access a dashboard.
