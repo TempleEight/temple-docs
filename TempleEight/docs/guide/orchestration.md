@@ -60,7 +60,7 @@ Finally the `deploy.sh` script is a shell script to automate starting your appli
 This file performs all of the steps needed to get everything running correctly, including runnning the `configure-kong.sh` script and setting the `$KONG_ENTRY` and `$KONG_ADMIN` environment variables.
 In order for these variables to remain set for the remainder of your terminal session, it needs to be run with the `source` command.
 
-Assuming you have the Docker daemon up and running, lets spin up our application:
+Assuming you have the Docker daemon up and running, let's spin up our application:
 
 ```shell 
 ❯❯❯ source deploy.sh
@@ -93,10 +93,10 @@ Another common framework for orchestrating services is [Kubernetes](https://kube
 It's a more heavyweight tool than Docker Compose, but has much more mature features and is generally seen as more 'production grade'.
 
 By changing the `#provider` annotation in a Templefile's project block to read `#provider(kubernetes)`, 
-Temple will generate the required config to run your services in k8s. 
+Temple will generate the required config to run your services in K8s. 
 
-Changing the `example.temple` file from the [Getting Started](../getting-started) guide to use this `#provider` annotation and generating,
-the configuration files generated are:
+Changing the `example.temple` file from the [Getting Started](../getting-started) guide to use this `#provider` annotation and then regenerating the project,
+results in the following configuration files:
 
 ```shell
 .
@@ -129,10 +129,10 @@ The `deploy.sh` and `configure-kong.sh` scripts serve the same purpose here as t
 although the mechanisms used to achieve this are different.
 
 The `push-image.sh` script builds Docker images from each service generated in your project.
-Since Kubernetes requires all images used in your system to be hosted in a [Docker Registry](https://docs.docker.com/registry/), Temple's Kubernetes infrastructure features it's own registry, hosted in the cluster itself.
+Since Kubernetes requires all images used in your system to be hosted in a [Docker Registry](https://docs.docker.com/registry/), Temple's Kubernetes infrastructure features its own registry, hosted in the cluster itself.
 This script pushes all of the built images to this registry for K8s to use.
 
-The aforementioned registry has it's configuration files in the `kube/deploy` directory.
+The aforementioned registry has its configuration files in the `kube/deploy` directory.
 The rest of the `kube` directory features the `yaml` configuration files for each other service managed by Kubernetes, including Kong.
 
 To run this example, we assume you have [`minikube`](https://minikube.sigs.k8s.io/docs/) installed.
