@@ -132,6 +132,19 @@ The `push-image.sh` script builds Docker images from each service generated in y
 Since Kubernetes requires all images used in your system to be hosted in a [Docker Registry](https://docs.docker.com/registry/), Temple's Kubernetes infrastructure features its own registry, hosted in the cluster itself.
 This script pushes all of the built images to this registry for K8s to use.
 
+:::info
+Due to a [known issue in Docker for Mac](https://github.com/docker/for-mac/issues/3611), pushing to a local registry doesn't work by default.
+Until this is fixed, a simple work around is to change the following line in your `/etc/hosts` file:
+```
+127.0.0.1	localhost
+```
+Change it to:
+```
+127.0.0.1	localhost registry.me
+```
+Then set the `$REG_URL` environment variable to be `registry.me` before running the `deploy.sh` script.
+:::
+
 The aforementioned registry has its configuration files in the `kube/deploy` directory.
 The rest of the `kube` directory features the `yaml` configuration files for each other service managed by Kubernetes, including Kong.
 
