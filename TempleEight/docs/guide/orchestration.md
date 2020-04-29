@@ -8,6 +8,10 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 Orchestration provides a fundamental building block of most modern service-oriented architectures, and Temple's generated projects are no exception.
 Temple provides several industry standards methods of automatically deploying your services.
 
+The currently supported frameworks are:
+* Docker Compose
+* Kubernetes
+
 ## Adding Orchestration to your Templefile
 Orchestrating your project automatically requires only a single line of configuration in your Templefile.
 Working from the example in the [Getting Started](../getting-started) guide:
@@ -24,28 +28,9 @@ ExampleService: service {
   bar: int;
 }
 ```
-We can see here that the Templefile features a `#provider` annotation in the project block.
-This is how we specify that our project uses orchestration, the name in the argument specifies which framework we are generating for.
-
-The currently supported frameworks are:
-* Docker Compose
-* Kubernetes
-
-All of the frameworks are generated to share a common toolchain, so that usage is the same no matter which you choose.
-
-## Kong API Gateway
-
-An API Gateway is an infrastructure component designed to be the entry point to your application. 
-It receives all requests from the user, performs actions like verifying their authentication, and then forwards the request to the correct microservice.
-
-Temple makes use of the existing [Kong API Gateway](https://docs.konghq.com/2.0.x/getting-started/quickstart/) for this purpose, and automatically generates all the configuration it requires.
-
-An API Gateway provides a single entry point into your project infrastructure, meaning it can direct requests to deployed services whether they are on a single machine or multiple machines.
-To do this, requests need to be addressed to Kong's URL.
-Temple's tooling automatically sets this URL into an environment variable called `$KONG_ENTRY`. 
-
-As previously mentioned, Kong also handles some end-user authentication, when it's used in your project.
-See the [Authentication](authentication) Guide for full details of this.
+Here, the `#provider` annotation marks that this project is being orchestrated, with the framework provided in the argument.
+All of the frameworks are generated to share a common deployment script that does all the heavy lifting, so that usage is the same no matter which you choose.
+This includes the [Kong API Gateway](https://docs.konghq.com/) for ingress, which is detailed [below](#kong-api-gateway)
 
 ## Docker Compose
 
@@ -68,7 +53,7 @@ It specifies, for each service, which Docker image should be used in the contain
 It also defines networking, allowing certain services to speak to others (for example, only one service should be able to communicate with each database).
 
 `kong/configure-kong.sh` is a script that is ran once the docker-compose infrastructure is running.
-It sends a series of `cURL` requests to the `Kong` API gateway which configures it to route requests it receives to the correct service, and to deal with any authentication required.
+It sends a series of `cURL` requests to the `Kong` API gateway which configures it to route requests it receives to the correct service, and to deal with any authentication required
 (see the [Authentication](authentication) Guide, and the [Kong Documentation](https://docs.konghq.com/2.0.x/getting-started/quickstart/)).
 
 Finally the `deploy.sh` script is a shell script to automate starting your application.
@@ -151,7 +136,7 @@ The aforementioned registry has it's configuration files in the `kube/deploy` di
 The rest of the `kube` directory features the `yaml` configuration files for each other service managed by Kubernetes, including Kong.
 
 To run this example, we assume you have [`minikube`](https://minikube.sigs.k8s.io/docs/) installed.
-See the Kubernetes documentation for a full reference on how to deploy your services into a production environment.
+See the [Kubernetes documentation](https://kubernetes.io/docs/home) for a full reference on how to deploy your services into a production environment.
 
 Run your application with the same methods as with Docker Compose:
 
@@ -170,3 +155,17 @@ In order to shut down your cluster and delete any config it's left behind, run:
 🔥  Deleting "minikube" in virtualbox ...
 💀  Removed all traces of the "minikube" cluster.
 ```
+
+## Kong API Gateway
+
+An API Gateway is an infrastructure component designed to be the entry point to your application. 
+It receives all requests from the user, performs actions like verifying their authentication, and then forwards the request to the correct microservice.
+
+Temple makes use of the existing [Kong API Gateway](https://docs.konghq.com/2.0.x/getting-started/quickstart/) for this purpose, and automatically generates all the configuration it requires.
+
+An API Gateway provides a single entry point into your project infrastructure, meaning it can direct requests to deployed services whether they are on a single machine or multiple machines.
+To do this, requests need to be addressed to Kong's URL.
+Temple's tooling automatically sets this URL into an environment variable called `$KONG_ENTRY`. 
+
+As previously mentioned, Kong also handles some end-user authentication, when it's used in your project.
+See the [Authentication](authentication) Guide for full details of this.
