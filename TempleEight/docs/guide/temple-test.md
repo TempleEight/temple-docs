@@ -8,7 +8,7 @@ In addition to automatic generation of microservice-based infrastructure, Temple
 
 `temple test` has two main operating modes:
 
-1. A full testing mode, where it will spin up the infrastructure locally, mock a request to each endpoint and then shut the infrastructure down
+1. A full testing mode, where it will spin up the infrastructure locally, mock a request to each endpoint and then shut the infrastructure down.
 
 2. A request only mode, where the infrastructure is assumed to already be running, and only mock requests are sent to each endpoint.
 
@@ -41,7 +41,7 @@ More information about this can be found in our [Access Control](access-control)
 
 ## Request Only Mode
 Running in request only mode requires the addition of a flag to the `temple test` command.
-This assumes that the infrastructure is running locally, and will not shut it down again after the test are completed:
+This assumes that the infrastructure is running locally, and will not shut it down after the test are completed:
 
 ```
 ❯❯❯ temple test --testOnly example.temple
@@ -56,7 +56,7 @@ This assumes that the infrastructure is running locally, and will not shut it do
 ```
 
 ## How Temple Test Works
-The Temple test command works by mocking request bodies according to the attributes within the the Templefile.
+The Temple test command works by mocking request bodies according to the attributes within the Templefile.
 It will randomly generate suitable values, using any upper or lower bounds provided as [Value Constraints](value-constraints), and populate a JSON object with these values.
 
 After making the request, it will ensure that the response object matches what is expected, validating that any values passed in the request are also included in the response, removing any values with annotations. 
