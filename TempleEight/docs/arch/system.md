@@ -6,7 +6,7 @@ sidebar_label: System Architecture
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-On top of generating service-level application code, Temple produces orchestration configuration to enable executing the services together as a whole system.
+On top of generating service-level application code, Temple produces orchestration configuration files to enable executing the services together as a whole system.
 This guide will take you through how a Temple generated application is designed on the super-service level.
 We'll look at how the system is organised and how it changes with more advanced features.
 
@@ -43,8 +43,9 @@ We can see that all components of our application are executed inside of [Docker
 This allows us to not have to worry about installing it locally, giving this job to our orchestration tool. 
 Containers allow us to encapsulate our application components and their dependencies, allowing them to be easily ran anywhere, among many other benefits.
 
-We can also see that Kong uses its own Postgres database to store information about which services exist and how to route requests to them.
-However, this is managed by the orchestration platform automatically, so we don't need to worry about it.
+We can also see that Kong uses it's own database to store information about which services exist and how to route requests to them.
+Like the rest of the Kong infrastructure, this database is orchestrated automatically by Temple.
+A [`PostgreSQL`](https://www.postgresql.org/) instance sits alongside Kong on a private network, so that only the Kong instance can communicate with it.
 
 All of the components of the system are deployed by the orchestration platform (see the [Orchestration](../guide/orchestration) guide for full details), however the system architecture can change a little bit based on which platform is chosen. 
 
@@ -93,7 +94,7 @@ This results in the following changes to our architecture:
 
 <img alt="System Architecture Kube" src={useBaseUrl('img/system-architecture-two-services.png')} />
 
-This isn't surprising.
+We can see that all of the existing infrastructure that supported `ExampleService` has been replicated for `AnotherService`, but everything else remains the same.
 We can extend this further by making a Foreign Key reference between services (See the [Foreign Keys](../guide/foreign-keys) guide for full details). 
 
 ```templefile {10}
@@ -147,8 +148,8 @@ ExampleService: service {
 }
 ```
 
-These additions result in an additional `Auth` service being automatically generated, taking care of storing and verifying user credentials as well as issuing authentication tokens to clients for use with other services.
-This is implemented by configuring Kong to check that any incoming requests have a valid [JWT](https://jwt.io/), except those destined for the `Auth` service. 
+These changes result in an additional `Auth` service being generated automatically that stores and verifies user credentials, and issues authentication tokens to users for use with other services.
+This is implemented by configuring Kong to check that any incoming requests have a valid [JWT](https://jwt.io/), except those destined for the auth service. 
 Any requests that are not correctly authenticated do not pass Kong, so the internal microservices can be sure that all traffic has been correctly authenticated.
 
 Visually, the changes to our architecture look like:
@@ -176,11 +177,10 @@ ExampleService: service {
 }
 ```
 
-When a project has metrics, two more infrastructure components are needed, a Prometheus container and a Grafana container. 
-Prometheus is a metrics aggregator.
-Each service contains logic to aggregate metrics about it's performance, and forwards them on to the Prometheus instance, which collects and stores the metrics from all the services.
-Grafana exposes a HTTP endpoint which allows an administrator to access a dashboard.
-The dashboard is populated by metrics pulled from Prometheus.
+When a project has metrics, two more infrastructure components are needed, a Prometheus instance and a Grafana instance. 
+Prometheus is a tool for aggregating metrics from all your services into one centralised place. 
+Each service contains logic to aggregate metrics about it's performance, which are pulled into Prometheus ready for querying.
+Grafana exposes a HTTP endpoint which allows an administrator to access a dashboard, populated with metrics pulled from Prometheus.
 
 This Grafana endpoint is not intended to be user-facing, so it is not routed through Kong. 
 Instead, the orchestration platform exposes a separate URL that is routed directly to the Grafana instance.
