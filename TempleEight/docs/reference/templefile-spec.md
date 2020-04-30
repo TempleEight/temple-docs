@@ -243,7 +243,7 @@ Possible values of `endpoint`:
 
 #### `#readable(by: scope)`, `#writable(by: scope)`
 
-_Blocks_: Project, Service and Struct
+_Blocks_: Project and Service
 
 Specify who is allowed to perform read/write operations on this service. The fallback value can be given in the project block, otherwise it will be `this` for projects with auth, or `all` for projects without. See the guide on [access control](../guide/access-control).
 
