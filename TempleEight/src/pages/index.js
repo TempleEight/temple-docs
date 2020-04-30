@@ -12,8 +12,8 @@ const features = [
     imageUrl: 'img/undraw_docusaurus_mountain.svg',
     description: (
       <>
-        Temple was designed from the ground up to be easily installed and
-        used to get your services up and running quickly.
+        Temple was designed from the ground up to be easily installed and used
+        to get your services up and running quickly.
       </>
     ),
   },
@@ -22,8 +22,8 @@ const features = [
     imageUrl: 'img/undraw_docusaurus_tree.svg',
     description: (
       <>
-        Temple lets you focus on your business logic, and we&apos;ll do the chores. Go
-        ahead and check out the TempleFile docs to begin.
+        Temple lets you focus on your business logic, and we&apos;ll do the
+        chores. Go ahead and check out the Templefile docs to begin.
       </>
     ),
   },
@@ -32,14 +32,15 @@ const features = [
     imageUrl: 'img/undraw_docusaurus_react.svg',
     description: (
       <>
-         TempleFiles are written in a high level DSL, trust that all your services will be
-         up and running in no time, so you can be deploying from day one.
+        Templefiles are written in a high level DSL, trust that all your
+        services will be up and running in no time, so you can be deploying from
+        day one.
       </>
     ),
   },
 ];
 
-function Feature({imageUrl, title, description}) {
+function Feature({ imageUrl, title, description }) {
   const imgUrl = useBaseUrl(imageUrl);
   return (
     <div className={classnames('col col--4', styles.feature)}>
@@ -56,11 +57,12 @@ function Feature({imageUrl, title, description}) {
 
 function Home() {
   const context = useDocusaurusContext();
-  const {siteConfig = {}} = context;
+  const { siteConfig = {} } = context;
   return (
     <Layout
       title={`${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      description="Description will go into a meta tag in <head />"
+    >
       <header className={classnames('hero hero--primary', styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">{siteConfig.title}</h1>
@@ -69,9 +71,10 @@ function Home() {
             <Link
               className={classnames(
                 'button button--outline button--secondary button--lg',
-                styles.getStarted,
+                styles.getStarted
               )}
-              to={useBaseUrl('docs/introduction')}>
+              to={useBaseUrl('docs/introduction')}
+            >
               Get Started
             </Link>
           </div>

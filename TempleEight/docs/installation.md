@@ -47,13 +47,13 @@ To install, run:
 
 <TabItem value="linux">
 Install by grabbing the latest release from <a href="https://github.com/TempleEight/temple/releases">GitHub</a>:
-<code>❯❯❯ wget -O /usr/bin/temple https://github.com/TempleEight/temple/releases/download/v0.1.0/temple-latest </code>
+<code>❯❯❯ wget -O /usr/bin/temple https://github.com/TempleEight/temple/releases/download/v1.0.0/temple-latest </code>
 <code>❯❯❯ chmod +x /usr/bin/temple</code>
 </TabItem>
 
 <TabItem value="docker">
 A Docker image is available on Docker Hub:
-<code>❯❯❯ docker run templeeight/temple:0.1 </code>
+<code>❯❯❯ docker run templeeight/temple:1.0 </code>
 </TabItem>
 </Tabs>
 
@@ -63,15 +63,15 @@ To confirm that the Temple CLI has been installed locally, run:
 
 ```
 ❯❯❯ temple --version
-temple 0.1.0 (c) 2020 TempleEight
+temple 1.0.0 (c) 2020 TempleEight
 ```
 
 If you're using Docker, any commands you pass after the image name will be executed within the container. 
 To invoke `temple --version`, run:
 
 ```
-❯❯❯ docker run templeeight/temple:0.1 temple --version
-temple 0.1.0 (c) 2020 TempleEight
+❯❯❯ docker run templeeight/temple:1.0 temple --version
+temple 1.0.0 (c) 2020 TempleEight
 ```
 
 ## Additional Information for Docker Users
@@ -85,7 +85,7 @@ For example, the following command mounts the directory `/Users/temple/project` 
 ```bash
 docker run \
 -v /Users/temple/project:/home/project:rw \
-templeeight/temple:0.1 \
+templeeight/temple:1.0 \
 temple --version
 ```
 
@@ -94,10 +94,7 @@ This also means that any paths you provide to the Temple executable will need to
 ```bash
 docker run \
 -v /Users/temple/project:/home/project:rw \
-templeeight/temple:0.1 \
+templeeight/temple:1.0 \
 temple validate /home/project/example.templefile
 ```
-
-
-
 :::
