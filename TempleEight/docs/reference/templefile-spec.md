@@ -25,10 +25,13 @@ Comments may be used at any point where whitespace is valid.
 
 ```templefile
 // line comment
+
 /* block comment */
+
 /*
 block comment
 */
+
 /* block
  * comment
  */
@@ -108,8 +111,8 @@ Services and structs can contain attributes, which are pieces of information tha
 Attribute names are alphanumeric strings starting with a lower-case letter, for example `name`, `bookingID` or `what3WordsLocation`.
 An attribute is specified by its name, a colon, its type and then any annotations, terminated by a semicolon.
 
-Every attribute will have a type, which will either be a [primitive type](templefile-primitives) or a reference to another service or struct.
-Primitive types may be parameterised.
+Every attribute will have a type, which will either be a [primitive type](templefile-primitives) or a [reference to another service or _neighbor struct_](#foreign-attributes).
+Primitive types may be parameterized.
 All parameters are optional, and may be given in order or by name.
 For example, a string can be specified in the following ways:
 
@@ -133,7 +136,10 @@ ExampleService: service {
 
 ### Foreign attributes
 
-Attributes may also be references to other services, or other structs in the same service. Simply use the name of the service as the type.
+Attributes may also be references to other services.
+Additionally, you may reference _neighbor structs_ from inside a struct: this means structs inside the same service as the current struct.
+Note that cycles and self-references are not legal, as it is impossible to initialize such a structure
+Simply use the name of the service as the type.
 
 ```templefile {7}
 Package: service {
@@ -167,7 +173,7 @@ Specify the provider to use for orchestration code generated. If this is not giv
 
 Possible values of `provider`:
 
-- `kubernetes`/`kube`/`k8s`: Use [Kubenetes](https://kubernetes.io/).
+- `kubernetes`/`kube`/`k8s`: Use [Kubernetes](https://kubernetes.io/).
 - `dockerCompose`/`dc`: Use [Docker Compose](https://docs.docker.com/compose/).
 
 #### `#metrics(metrics: m)`
