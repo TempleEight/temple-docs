@@ -16,7 +16,7 @@ Every declaration except for block declarations must end in a semicolon.
 ## Comments
 
 Comments are a way of providing information to the human reader, and have no effect on the compiled version.
-Any valid UTF-8 characters may be occur within the comment, except for the character sequence marking the end of the comment.
+Any valid UTF-8 characters may occur within the comment, except for the character sequence marking the end of the comment.
 Comments may be used at any point where whitespace is valid.
 
 - Line comments start with `//`, and end with a line break.
@@ -47,6 +47,7 @@ The block name is an alphanumeric string starting with a capital letter (e.g. `B
 The block can then contain [attributes](#attributes), [metadata](#metadata) and more blocks, depending on the block type.
 
 ```templefile
+// This project is called Example
 Example: project {
   // metadata goes here
 }
@@ -84,8 +85,8 @@ Home: service {
 
 ### Struct Blocks
 
-Struct blocks represent tables stored on the same server as the main service.
-Every instance of a struct has an implicit reference its parent service, forming a many-to-one relationship.
+Struct blocks represent tables stored in the same database as the main service.
+Every instance of a struct has an implicit reference to its parent service, forming a many-to-one relationship.
 They may contain attributes, and [metadata](#metadata).
 
 ```templefile {9-12}
@@ -129,7 +130,7 @@ They may be used in combination without any separators.
 ExampleService: service {
   firstName: string;
   lastName: string(20);
-  handle: string @unique;
+  handle: string @serverSet @unique;
   score: int(min: 0) @server;
 }
 ```
@@ -138,7 +139,6 @@ ExampleService: service {
 
 Attributes may also be references to other services.
 Additionally, you may reference _neighbor structs_ from inside a struct: this means structs inside the same service as the current struct.
-Note that cycles and self-references are not legal, as it is impossible to initialize such a structure
 Simply use the name of the service as the type.
 
 ```templefile {7}
@@ -153,11 +153,14 @@ Delivery: service {
 }
 ```
 
+Note that cycles and self-references are not legal, as it is impossible to initialize such a structure.
+
 ## Metadata
 
 Blocks may contain metadata, identified by a leading `#`.
-These are used to configure the block (the service/the project).
+These are used to configure the block.
 Some metadata takes parameters, with the same syntax as with attribute type parameters.
+The argument may be named (`#readable(by: this)`), or not (`#readable(this)`).
 No block may include the same metadata item twice.
 
 The parameters may be single words (e.g. `go`), or lists (e.g. `[delete, update]`).
@@ -169,7 +172,7 @@ There is a short-hand syntax for lists: `#omit[delete, update]` is the same as `
 
 _Blocks_: Project
 
-Specify the provider to use for orchestration code generated. If this is not given, no orchestration code is generated. See the guide on [orchestration](../guide/orchestration).
+Specify the provider to use for orchestration code generated. If this is not given, no orchestration code is generated. See the [Orchestration Guide](../guide/orchestration).
 
 Possible values of `provider`:
 
@@ -180,7 +183,7 @@ Possible values of `provider`:
 
 _Blocks_: Project
 
-Specify the provider to use for recording metrics on the project. If this is not given, no measurement code is generated. See the guide on [metrics](../guide/metrics).
+Specify the provider to use for recording metrics on the project. If this is not given, no measurement code is generated. See the [Metrics Guide](../guide/metrics).
 
 Possible values of `m`:
 
@@ -191,7 +194,7 @@ Possible values of `m`:
 
 _Blocks_: Project
 
-Enable authentication for this project, using the method provided. See the guide on [authentication](../guide/authentication.md).
+Enable authentication for this project, using the method provided. See the [Authentication Guide](../guide/authentication.md).
 
 Possible values of `auth`:
 
@@ -203,7 +206,7 @@ Possible values of `auth`:
 _Blocks_: Service and Project
 
 Specify the language to generate the service server in.
-If it is not specified, it will fall back to the value given in the project block (which also specifies the language to use for the [auth server](../guide/authentication)).
+If it is not specified, it will fall back to the value given in the project block (which also specifies the language to use for the auth service, if applicable).
 
 Possible values of `lang`:
 
@@ -214,8 +217,8 @@ Possible values of `lang`:
 
 _Blocks_: Service and Project
 
-Specify the database engine to use for the service server.
-If it is not specified, it will fall back to the value given in the project block (which also specifies the database engine to use for the [auth server](../guide/authentication)).
+Specify the database engine to use for the database backing the service.
+If it is not specified, it will fall back to the value given in the project block (which also specifies the database engine to use for the auth service database, if applicable).
 
 Possible values of `db`:
 
@@ -226,7 +229,7 @@ Possible values of `db`:
 
 _Blocks_: Service and Struct
 
-Generate a list endpoint for this service/struct. See the [guide on enumeration](../guide/enumeration).
+Generate a list endpoint for this service/struct. See the [Enumeration Guide](../guide/enumeration).
 
 #### `#auth`
 
@@ -238,7 +241,7 @@ Mark this service as one tied to an account, so there is a 1:1 mapping between a
 
 _Blocks_: Service and Struct
 
-Do not generate the specified endpoints. See the guide to [omitting endpoints](../guide/omitting-endpoints).
+Do not generate the specified endpoints. See the [Omitting Endpoints Guide](../guide/omitting-endpoints).
 
 Possible values of `endpoint`:
 
@@ -251,7 +254,9 @@ Possible values of `endpoint`:
 
 _Blocks_: Project and Service
 
-Specify who is allowed to perform read/write operations on this service. The fallback value can be given in the project block, otherwise it will be `this` for projects with auth, or `all` for projects without. See the guide on [access control](../guide/access-control).
+Specify who is allowed to perform read/write operations on this service.
+The fallback value can be given in the project block, otherwise it will be `this` for projects with auth, or `all` for projects without.
+See the [Access Control Guide](../guide/access-control).
 
 Possible values of `scope`:
 
