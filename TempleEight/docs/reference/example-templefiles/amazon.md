@@ -6,7 +6,7 @@ sidebar_label: Amazon
 
 The following Templefile captures Amazon's core e-commerce model, the online marketplace for goods.
 
-```
+```templefile
 Amazon: project {
   #language(go);
   #database(postgres);

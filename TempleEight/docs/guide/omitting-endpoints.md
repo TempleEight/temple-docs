@@ -18,7 +18,7 @@ To remove the endpoint from the generated code, you can include additional metad
 ## Removing specific endpoints
 In the example from the [Getting Started](../getting-started) guide, we defined an `ExampleService` as follows:
 
-```
+```templefile
 ExampleService: service {
   foo: string;
   bar: int;
@@ -27,7 +27,7 @@ ExampleService: service {
 
 If we decide that we don't want the `DELETE` endpoint any more, we can simply omit it:
 
-```
+```templefile
 ExampleService: service {
   foo: string;
   bar: int;
@@ -39,7 +39,7 @@ The argument to the `#omit` metadata tag is a list of endpoints, from the option
 
 Furthermore, we allow the outer parentheses to be dropped, if you find this to be more readable: 
 
-```
+```templefile
 ExampleService: service {
   foo: string;
   bar: int;

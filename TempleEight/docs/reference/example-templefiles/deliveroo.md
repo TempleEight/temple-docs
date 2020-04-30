@@ -6,7 +6,7 @@ sidebar_label: Deliveroo
 
 The following Templefile captures Deliveroo's core model, the food delivery service.
 
-```
+```templefile
 Deliveroo: project {
   #language(go);
   #database(postgres);

@@ -11,7 +11,7 @@ We'll start by considering the `ExampleService` from the [Getting Started](../ge
 By adding a `@unique` annotation to a property, at most one object stored by the service may have a particular value stored for that property.
 For example adding a unique annotation to the `bar` attribute means that every entity stored must have store a diffferent value.
 
-```
+```templefile
 ExampleService: service {
   foo: string;
   bar: int @unique;
@@ -29,7 +29,7 @@ Let's see an example of this, by attempting to create an object with the same va
 
 One special use of the `@unique` attribute comes when combined with property-level [Value Constraints](value-constraints), which allows you to limit the total number of `ExampleService` objects that could exist at any one time.
 For example:
-```
+```templefile
 ExampleService: service {
   foo: string;
   bar: int(100, 1) @unique;
@@ -43,7 +43,7 @@ Annotating a property with `@server` allows you to indicate that a property will
 This might be particularly useful if you want to store some data for server-side computation only, without giving this information back to the client.
 
 For example, let's add a `@server` property to the `bar` attribute:
-```
+```templefile
 ExampleService: service {
   foo: string;
   bar: int @server;
@@ -64,7 +64,7 @@ Annotating a property with `@serverSet` allows you to indicate that the property
 This might be particularly useful if you want to do some server side computation before setting the value.
 
 For example, let's add a `@serverSet` property to the `bar` attribute:
-```
+```templefile
 ExampleService: service {
   foo: string;
   bar: int @serverSet;
@@ -85,7 +85,7 @@ Annotating a property with `@client` allows you to indicate that the property wi
 This might be particularly useful if you want to do some server side computation, but don't need the value afterwards.
 
 For example, let's add a `@client` property to the `bar` attribute:
-```
+```templefile
 ExampleService: service {
   foo: string;
   bar: int @client;
