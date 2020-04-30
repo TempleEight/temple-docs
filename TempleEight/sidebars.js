@@ -36,6 +36,7 @@ module.exports = {
         'guide/orchestration',
         'guide/regeneration',
         'guide/temple-test',
+        'guide/value-annotations',
         'guide/value-constraints',
       ],
     },
