@@ -6,7 +6,7 @@ sidebar_label: Airbnb
 
 The following Templefile captures Airbnb's core model, the online marketplace for arranging and offering lodging.
 
-```
+```templefile
 Airbnb: project {
   #language(go);
   #database(postgres);

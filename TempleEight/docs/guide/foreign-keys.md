@@ -11,7 +11,7 @@ We'll use the `ExampleService` from the [Getting Started](../getting-started.md)
 In the context of a Templefile, a foreign key is a service attribute that links that service to another service.
 For example, let us add another service alongside our example service, and add a foreign key.
 
-```
+```templefile
 ExampleService: service {
   foo: string;
   bar: int;

@@ -12,7 +12,7 @@ In this guide, we'll show you how to add authentication to your project and how 
 ## Adding Authentication to Your Project
 The [Getting Started](../getting-started) guide concluded with the following example Templefile:
 
-```
+```templefile
 ExampleProject: project {
   #language(go);
   #database(postgres);

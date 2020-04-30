@@ -20,7 +20,8 @@ Before we get started, here are the `go` libraries we're using:
 
 ## Service File Tree
 As a reminder, here is the `ExampleService` block from the [Getting Started](../getting-started.md) guide:
-```
+
+```templefile
 ExampleService: service {
   foo: string;
   bar: int;
@@ -109,7 +110,7 @@ However additional DAO functions can be added by modifying the `datastore` inter
 If the service includes foreign key attributes, additional files are generated to facilitate inter-service communication.
 For example, let us add a foreign key to our example service:
 
-```
+```templefile
 ExampleService: service {
   foo: string;
   bar: int;
@@ -137,7 +138,7 @@ In the future we anticipate providing a similar mechanism to that in the `dao` t
 If the project has metrics defined for it, additional files are generated to facilitate them.
 For example, let us add metrics to our example service:
 
-```
+```templefile
 ExampleProject: project {
   #language(go);
   #database(postgres);

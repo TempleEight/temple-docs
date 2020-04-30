@@ -6,8 +6,7 @@ sidebar_label: Lockdown Shopping
 
 The following Templefile is for a system that would allow those who are self-isolating to request others in the community to deliver shopping to their doorstep.
 
-
-```
+```templefile
 LockdownShopping: project {
    #language(go);
    #database(postgres);

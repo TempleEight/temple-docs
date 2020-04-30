@@ -19,7 +19,7 @@ This guide will walk you through how to add new DAO functions to your project, u
 ## Adding a New DAO Function
 The Templefile we defined in the [Getting Started](../getting-started) guide was as follows:
 
-```
+```templefile
 ExampleProject: project {
   #language(go);
   #database(postgres);
