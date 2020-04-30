@@ -6,7 +6,7 @@ sidebar_label: Templefile Specification
 
 Temple determines what to generate by taking in a **Templefile**.
 This is a text file containing a specification of the system to build.
-It consists of a `project` block and one or more `service` blocks.
+It consists of a [project block](#project-block) and one or more [service blocks](#service-blocks).
 
 ## Syntax
 
@@ -44,8 +44,6 @@ The block name is an alphanumeric string starting with a capital letter (e.g. `B
 The block can then contain [attributes](#attributes), [metadata](#metadata) and more blocks, depending on the block type.
 
 ```templefile
-//test
-/*test*/
 Example: project {
   // metadata goes here
 }
@@ -58,15 +56,50 @@ It includes global configuration with [metadata](#metadata), some of which may b
 By convention this is the first entry in the file.
 Its name is the name of the project.
 
+```templefile
+Example: project {
+  #provider(kube);
+}
+```
+
 ### Service Blocks
 
 Service blocks represent entire microservices.
 They may contain attributes, structs (other database tables to be handled by the same service), and [metadata](#metadata).
+By convention they are named in the singular, to identify a single entry, e.g. Home.
+
+```templefile {5-8}
+Example: project {
+  #provider(kube);
+}
+
+Home: service {
+  address: string;
+  #auth;
+}
+```
 
 ### Struct Blocks
 
 Struct blocks represent tables stored on the same server as the main service.
+Every instance of a struct has an implicit reference its parent service, forming a many-to-one relationship.
 They may contain attributes, and [metadata](#metadata).
+
+```templefile {9-12}
+Example: project {
+  #provider(kube);
+}
+
+Home: service {
+  address: string;
+  #auth;
+
+  Room: struct {
+    name: string;
+    #enumerable;
+  };
+}
+```
 
 ## Attributes
 
