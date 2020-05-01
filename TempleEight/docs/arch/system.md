@@ -130,7 +130,7 @@ This means that when adding structs to your Templefile, the overall system-level
 ### Auth
 
 As per the [Authentication](../guide/authentication) guide, 
-authentication can be added to your system by augmenting your Templefile to include `#auth` metadata on services, and a `#authMethod` annotation on the project block.
+authentication can be added to your system by augmenting your Templefile to include `#auth` metadata on services, and a `#authMethod` tag on the project block.
 For example:
 
 ```templefile {5,10}
@@ -179,7 +179,7 @@ ExampleService: service {
 
 When a project has metrics, two more infrastructure components are needed, a Prometheus instance and a Grafana instance. 
 Prometheus is a tool for aggregating metrics from all your services into one centralised place. 
-Each service contains logic to aggregate metrics about it's performance, which are pulled into Prometheus ready for querying.
+Each service contains logic to aggregate metrics about its performance, which are pulled into Prometheus ready for querying.
 Grafana exposes a HTTP endpoint which allows an administrator to access a dashboard, populated with metrics pulled from Prometheus.
 
 This Grafana endpoint is not intended to be user-facing, so it is not routed through Kong. 
