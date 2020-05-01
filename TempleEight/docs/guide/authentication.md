@@ -145,6 +145,33 @@ However, it has one distinguishing feature: a single token is only able to creat
 This means means that there is at most a one-to-one mapping between an entity in the `Auth` service, and an entity in the `ExampleUser` service.
 This makes the `ExampleUser` service perfect for storing additional metadata about a user, such as their name, address or anything that fits your business needs.
 
+## `identify` Endpoint
+Any service that contains a `#auth` metadata item will also generate an `identify` endpoint.
+Given an access token, this endpoint will redirect you to a URL where you can find information about that given entity.
+The identify endpoint is accessible by making a `GET` request to the service's base URL.
+Let's consider an example:
+
+
+```bash
+# Register a new auth
+❯❯❯ curl -X POST $KONG_ENTRY/api/auth/register -d '{"email": "test@temple.com", "password": "abcdefgh"}'
+{"AccessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODg0MTMyMDYsImlkIjoiOWE1MTVhNzMtOGI5MS0xMWVhLTg0OTctMDI0MmFjMTUwMDAyIiwiaXNzIjoiWnFocmVTYUZSeFVFUDkyZ2pLaVBvRmNmMjd0VlZIeWcifQ.q1oQZpk9mVfGmVbxlOiuztvU2KjO_SNN1VQa3K80f_w"}
+
+# Create a new entity in ExampleUser using the auth token
+❯❯❯ curl -X POST $KONG_ENTRY/api/example-user -d '{"name": "Andrew"}' -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODg0MTMyMDYsImlkIjoiOWE1MTVhNzMtOGI5MS0xMWVhLTg0OTctMDI0MmFjMTUwMDAyIiwiaXNzIjoiWnFocmVTYUZSeFVFUDkyZ2pLaVBvRmNmMjd0VlZIeWcifQ.q1oQZpk9mVfGmVbxlOiuztvU2KjO_SNN1VQa3K80f_w"
+{"id":"9a515a73-8b91-11ea-8497-0242ac150002","name":"Andrew"}
+
+# Execute an identify request using the auth token
+❯❯❯ curl -v -X GET $KONG_ENTRY/api/example-user -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODg0MTMyMDYsImlkIjoiOWE1MTVhNzMtOGI5MS0xMWVhLTg0OTctMDI0MmFjMTUwMDAyIiwiaXNzIjoiWnFocmVTYUZSeFVFUDkyZ2pLaVBvRmNmMjd0VlZIeWcifQ.q1oQZpk9mVfGmVbxlOiuztvU2KjO_SNN1VQa3K80f_w"
+...
+< HTTP/1.1 302 Found
+< Location: http://localhost:8000/api/example-user/9a515a73-8b91-11ea-8497-0242ac150002
+
+# Using the Location header, make a follow-up request to that URL
+❯❯❯ curl -X GET http://localhost:8000/api/example-user/9a515a73-8b91-11ea-8497-0242ac150002 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1ODg0MTMyMDYsImlkIjoiOWE1MTVhNzMtOGI5MS0xMWVhLTg0OTctMDI0MmFjMTUwMDAyIiwiaXNzIjoiWnFocmVTYUZSeFVFUDkyZ2pLaVBvRmNmMjd0VlZIeWcifQ.q1oQZpk9mVfGmVbxlOiuztvU2KjO_SNN1VQa3K80f_w"
+{"id":"9a515a73-8b91-11ea-8497-0242ac150002","name":"Andrew"}
+```
+
 ## How Authentication is Implemented
 To best explain the changes made when authentication is added to your project let's consider how a new user registers with your service:
 
