@@ -73,7 +73,7 @@ Tweeter: service {
 
 ## Endpoint URLs
 
-To emphasize that every struct is tied to a specific instance of the service, the ID of the parent is included in the URL of the parent.
+To emphasize that every struct is tied to a specific instance of the service, the ID of the parent is included in the URL of the entry.
 
 Using the example above, the endpoints generated are as follows:
 
