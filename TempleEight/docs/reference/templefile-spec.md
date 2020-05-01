@@ -72,9 +72,10 @@ Service blocks represent entire microservices.
 They may contain attributes, structs (other database tables to be handled by the same service), and [metadata](#metadata).
 By convention they are named in the singular, to identify a single entry, e.g. Home.
 
-```templefile {5-8}
+```templefile {6-9}
 Example: project {
   #provider(kube);
+  #authMethod(email);
 }
 
 Home: service {
@@ -89,8 +90,9 @@ Struct blocks represent tables stored in the same database as the main service.
 Every instance of a struct has an implicit reference to its parent service, forming a many-to-one relationship.
 They may contain attributes, and [metadata](#metadata).
 
-```templefile {9-12}
+```templefile {10-13}
 Example: project {
+  #authMethod(email);
   #provider(kube);
 }
 
