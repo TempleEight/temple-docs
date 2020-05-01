@@ -32,7 +32,7 @@ In the example above, every room is part of a single home.
 
 Structs may include metadata for specifying which endpoints are generated: [`#enumerable`](enumeration) and [`#omit[...]`](omitting-endpoints).
 They may not include [access control](access-control) metadata (`#readable`/`#writable`): this is all inherited from the parent.
-This means that, if a service is only writable by the creator, only the creator of the service entry may create a struct tied to this service entry.
+This means that, if a service is only writable by the creator, only the creator of the service entry may create a struct tied to this service entity.
 The struct entry is likewise only readable (through the list/read endpoints) if the parent is readable.
 
 ## Many-to-many relationships
