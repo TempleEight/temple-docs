@@ -35,6 +35,7 @@ module.exports = {
         'guide/open-api',
         'guide/orchestration',
         'guide/regeneration',
+        'guide/structs',
         'guide/temple-test',
         'guide/value-annotations',
         'guide/value-constraints',
@@ -49,7 +50,9 @@ module.exports = {
       type: 'category',
       label: 'Reference',
       items: [
-        'reference/templefile-spec', 'reference/templefile-primitives', {
+        'reference/templefile-spec',
+        'reference/templefile-primitives',
+        {
           type: 'category',
           label: 'Example Templefiles',
           items: [
@@ -58,9 +61,9 @@ module.exports = {
             'reference/example-templefiles/deliveroo',
             'reference/example-templefiles/five-a-side',
             'reference/example-templefiles/lockdown-shopping',
-          ]
-        }
-      ]
-    }
-  ]
+          ],
+        },
+      ],
+    },
+  ],
 };
