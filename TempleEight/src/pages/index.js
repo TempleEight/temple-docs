@@ -8,33 +8,32 @@ import styles from './styles.module.css';
 
 const features = [
   {
-    title: <>Easy to Use</>,
-    imageUrl: 'img/undraw_docusaurus_mountain.svg',
+    title: <>Microservice Code Generation</>,
+    imageUrl: 'img/microservices.png',
     description: (
       <>
-        Temple was designed from the ground up to be easily installed and used
-        to get your services up and running quickly.
+        Temple provides tools for automatic development of microservice based systems.
+        Focus on your business logic, and we&apos;ll do the chores. 
       </>
     ),
   },
   {
-    title: <>Focus on What Matters</>,
-    imageUrl: 'img/undraw_docusaurus_tree.svg',
+    title: <>Industry-Standard Best Practices</>,
+    imageUrl: 'img/best-practices.png',
     description: (
       <>
-        Temple lets you focus on your business logic, and we&apos;ll do the
-        chores. Go ahead and check out the Templefile docs to begin.
+        Everything Temple generates is designed from the ground up to be readable, extendible and to follow standard best practices.
+        You can trust that everything we produce will be usable long after you've outgrown us.
       </>
     ),
   },
   {
-    title: <>Powered by Magic</>,
-    imageUrl: 'img/undraw_docusaurus_react.svg',
+    title: <>Designed For Simplicity</>,
+    imageUrl: 'img/templefile.png',
     description: (
       <>
-        Templefiles are written in a high level DSL, trust that all your
-        services will be up and running in no time, so you can be deploying from
-        day one.
+        Templefiles are written in a simple, high level domain specific language.
+        Know that all your services will be up and running in no time, so you can deploy from day one.
       </>
     ),
   },
