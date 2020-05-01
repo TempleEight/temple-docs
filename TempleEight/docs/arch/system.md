@@ -33,7 +33,7 @@ Also from the Getting Started Guide is this diagram outlining the system archite
 
 <img alt="Tutorial System Architecture" src={useBaseUrl('img/tutorial-architecture.png')} />
 
-It shows a high level description of the system, detailing how the [Kong API Gateway](https://konghq.com/kong/) sits between the user and the backend services, and how the service communicates with its database.
+It shows a high level description of the system, detailing how the [Kong API Gateway](https://konghq.com/kong/) sits between the client and the backend services, and how the service communicates with its database.
 
 Let's delve a little bit deeper into this architecture and see some finer details:
 
@@ -95,7 +95,7 @@ This results in the following changes to our architecture:
 <img alt="System Architecture Kube" src={useBaseUrl('img/system-architecture-two-services.png')} />
 
 We can see that all of the existing infrastructure that supported `ExampleService` has been replicated for `AnotherService`, but everything else remains the same.
-We can extend this further by making a Foreign Key reference between services (See the [Foreign Keys](../guide/foreign-keys) guide for full details). 
+We can extend this further by making a Foreign Key reference between services (See the [Foreign Keys & Inter-Service Communication](../guide/foreign-keys) guide for full details). 
 
 ```templefile {10}
 ExampleProject: project {
@@ -122,7 +122,7 @@ On the project level, nothing changes, except the services use the hostname reso
 
 ### Structs
 
-Adding a struct to a service in your Templefile represents two data items that are strongly coupled (see the [Struct](../guide/structs) guide for details).
+Adding a struct to a service in your Templefile represents two data items that are strongly coupled (see the [Structs](../guide/structs) guide for details).
 This is implemented in Temple generated projects by extending the parent's application executable to include the additional endpoints required to process struct requests.
 The struct's data is stored in a separate table of the service's database. 
 This means that when adding structs to your Templefile, the overall system-level architecture doesn't change.
