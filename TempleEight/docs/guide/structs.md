@@ -9,7 +9,7 @@ This is useful for implementing many-to-one relationships, providing a parallel 
 Temple provides this functionality in the form of **structs**.
 A struct block is expressed in the Templefile as a block within another service.
 
-```templefile {10-13}
+```templefile {11-14}
 Example: project {
   #provider(kube);
   #authMethod(email);
@@ -41,8 +41,8 @@ To make a many-to-many relationship, use a struct as a linking table.
 Below are two examples of this.
 Note that in the second example, `Follower` does not include a reference to the tweeter doing the following, as that is implicit: only the reference to the tweeter being followed is included.
 
-```templefile
-ExampleNews: project {7}
+```templefile {7}
+ExampleNews: project {}
 
 Subscriber: service {
   username: string @unique;
