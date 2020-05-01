@@ -187,7 +187,7 @@ See the [Orchestration Guide](guide/orchestration).
 What we've generated here is a microservice that exposes 4 API endpoints. 
 Each endpoint performs one of the CRUD (Create, Read, Update, Delete) operations respectively, on valid data that matches the description given in the Templefile.
 
-As all of the HTTP requests are routed through the Kong API Gateway (See the [Ingress Guide](ingress)), we address the requests in the form Kong requires.
+As all of the HTTP requests are routed through the Kong API Gateway (See the [Orchestration Guide](orchestration)), we address the requests in the form Kong requires.
 This format is: `$KONG_ENTRY_URL/api/$service_name/$endpoint`. 
 The `$KONG_ENTRY_URL` is set in an environment variable called `$KONG_ENTRY` automatically by the `deploy.sh` script.
 
