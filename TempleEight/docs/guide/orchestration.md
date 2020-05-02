@@ -30,7 +30,7 @@ ExampleService: service {
 ```
 Here, the `#provider` annotation marks that this project is being orchestrated, with the framework provided in the argument.
 All of the frameworks are generated to share a common deployment script that does all the heavy lifting, so that usage is the same no matter which you choose.
-This includes the [Kong API Gateway](https://docs.konghq.com/) for ingress, which is detailed [below](#kong-api-gateway)
+This includes the [Kong API Gateway](https://docs.konghq.com/) for ingress, which is detailed [below](#kong-api-gateway).
 
 ## Docker Compose
 
@@ -54,7 +54,7 @@ It also defines networking, allowing certain services to speak to others (for ex
 
 `kong/configure-kong.sh` is a script that is ran once the docker-compose infrastructure is running.
 It sends a series of `cURL` requests to the `Kong` API gateway which configures it to route requests it receives to the correct service, and to deal with any authentication required
-(see the [Authentication](authentication) Guide, and the [Kong Documentation](https://docs.konghq.com/2.0.x/getting-started/quickstart/)).
+(see the [Authentication](authentication) guide, and the [Kong Documentation](https://docs.konghq.com/2.0.x/getting-started/quickstart/)).
 
 Finally the `deploy.sh` script is a shell script to automate starting your application.
 This file performs all of the steps needed to get everything running correctly, including runnning the `configure-kong.sh` script and setting the `$KONG_ENTRY` and `$KONG_ADMIN` environment variables.

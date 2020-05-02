@@ -17,7 +17,7 @@ During this process, Temple will regenerate _all_ project files, overwriting any
 
 As the setup and datastore source files do not change based on the contents of the Service they're generated from, they can be safely omitted from the regeneration process without risk of breaking changes. 
 
-This also allows the user to add their own custom business logic (as per the [Business Logic](guides/business-logic) guide) in these two files, which persists between generation events.
+This also allows the user to add their own custom business logic (as per the [Business Logic & Hooks](hooks) guide) in these two files, which persists between generation events.
 However it is very possible that the business logic that exists may not be correct after regeneration, reflecting changes to the properties of a service, etc.
 
 To invoke the regeneration process, simply run `temple generate` with an output directory that already contains an existing temple project.

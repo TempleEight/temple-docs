@@ -156,7 +156,7 @@ Making a `Create` request to create a `Photo` entity requires a parent `ExampleS
 If like we have here, the parent service has `#writable(by: this)` defined, then only the creator of the parent entity can create struct entities on it.
 You can think of struct entities as belonging to the creator of the parent service entity.
 
-For more details on structs check out the [Structs](structs.md) guide.
+For more details on structs check out the [Structs](structs) guide.
 
 ## Limitations
 We acknowledge that this current implementation is limited in the granularity of access control it can support.

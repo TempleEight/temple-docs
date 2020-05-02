@@ -174,7 +174,7 @@ There is a short-hand syntax for lists: `#omit[delete, update]` is the same as `
 
 _Blocks_: Project
 
-Specify the provider to use for orchestration code generated. If this is not given, no orchestration code is generated. See the [Orchestration Guide](../guide/orchestration).
+Specify the provider to use for orchestration code generated. If this is not given, no orchestration code is generated. See the [Orchestration](../guide/orchestration) guide.
 
 Possible values of `provider`:
 
@@ -185,7 +185,7 @@ Possible values of `provider`:
 
 _Blocks_: Project
 
-Specify the provider to use for recording metrics on the project. If this is not given, no measurement code is generated. See the [Metrics Guide](../guide/metrics).
+Specify the provider to use for recording metrics on the project. If this is not given, no measurement code is generated. See the [Metrics](../guide/metrics) guide.
 
 Possible values of `m`:
 
@@ -196,7 +196,7 @@ Possible values of `m`:
 
 _Blocks_: Project
 
-Enable authentication for this project, using the method provided. See the [Authentication Guide](../guide/authentication.md).
+Enable authentication for this project, using the method provided. See the [Authentication](../guide/authentication.md) guide.
 
 Possible values of `auth`:
 
@@ -231,7 +231,7 @@ Possible values of `db`:
 
 _Blocks_: Service and Struct
 
-Generate a list endpoint for this service/struct. See the [Enumeration Guide](../guide/enumeration).
+Generate a list endpoint for this service/struct. See the [Enumeration](../guide/enumeration) guide.
 
 #### `#auth`
 
@@ -243,7 +243,7 @@ Mark this service as one tied to an account, so there is a 1:1 mapping between a
 
 _Blocks_: Service and Struct
 
-Do not generate the specified endpoints. See the [Omitting Endpoints Guide](../guide/omitting-endpoints).
+Do not generate the specified endpoints. See the [Omitting Endpoints](../guide/omitting-endpoints) guide.
 
 Possible values of `endpoint`:
 
@@ -258,7 +258,7 @@ _Blocks_: Project and Service
 
 Specify who is allowed to perform read/write operations on this service.
 The fallback value can be given in the project block, otherwise it will be `this` for projects with auth, or `all` for projects without.
-See the [Access Control Guide](../guide/access-control).
+See the [Access Control](../guide/access-control) guide.
 
 Possible values of `scope`:
 
