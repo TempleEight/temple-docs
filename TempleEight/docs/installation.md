@@ -48,13 +48,13 @@ To install, run:
 
 <TabItem value="linux">
 Install by grabbing the latest release from <a href="https://github.com/TempleEight/temple/releases">GitHub</a>:
-<code>❯❯❯ wget -O /usr/bin/temple https://github.com/TempleEight/temple/releases/download/v1.0.0/temple-latest </code>
+<code>❯❯❯ wget -O /usr/bin/temple https://github.com/TempleEight/temple/releases/download/v1.1.1/temple-latest </code>
 <code>❯❯❯ chmod +x /usr/bin/temple</code>
 </TabItem>
 
 <TabItem value="docker">
 A Docker image is available on Docker Hub:
-<code>❯❯❯ docker run templeeight/temple:1.0 </code>
+<code>❯❯❯ docker run templeeight/temple:1.1.1 </code>
 </TabItem>
 </Tabs>
 
@@ -64,15 +64,15 @@ To confirm that the Temple CLI has been installed locally, run:
 
 ```
 ❯❯❯ temple --version
-temple 1.0.0 (c) 2020 TempleEight
+temple 1.1.1 (c) 2020 TempleEight
 ```
 
 If you're using Docker, any commands you pass after the image name will be executed within the container. 
 To invoke `temple --version`, run:
 
 ```
-❯❯❯ docker run templeeight/temple:1.0 temple --version
-temple 1.0.0 (c) 2020 TempleEight
+❯❯❯ docker run templeeight/temple:1.1.1 temple --version
+temple 1.1.1 (c) 2020 TempleEight
 ```
 
 ## Additional Information for Docker Users
