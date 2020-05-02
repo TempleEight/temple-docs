@@ -12,7 +12,7 @@ Before getting started, make sure you have installed the Temple CLI according to
 
 ## Project Definition
 Temple projects start by defining a data model in our custom Templefile.
-A data model expresses the different entities within a system, along with their attributes and any relationships between different types of data .
+A data model expresses the different entities within a system, along with their attributes and any relationships between different types of data.
 The Templefile also includes configuration for how the project will be structured, as well as the components that will be generated.
 
 Start by making a new directory, then move into it:
@@ -22,7 +22,7 @@ Start by making a new directory, then move into it:
 ~/temple-tutorial ❯❯❯
 ```
 
-In this new directory, create a file called `simple.temple`.
+In this new directory, create a plain text file called `simple.temple`.
 Within this file we are going to define a new project and an example service.
 
 ### Defining a Project
@@ -38,8 +38,7 @@ ExampleProject: project {
 }
 ```
 
-Each line that begins with a `#` is referred to as a metadata item.
-These can appear in both project and service definitions, although some are restricted to only appear within one of the two.
+Each declaration that begins with a `#` is referred to as a metadata item.
 
 ### Defining a Service
 A Templefile can contain one or more service blocks.
@@ -55,7 +54,7 @@ ExampleService: service {
 }
 ```
 
-Temple has several built in types, such as `string`, `int` and `float`, a list of which can be found in the [Primitive Datatypes](reference/templefile-primitives) guide.
+Temple has several built in types, such as `string`, `int` and `float`, a list of which can be found in the [Primitive Datatypes](reference/templefile-primitives) reference.
 
 In addition to this, attributes can also refer to other services, implying a foreign key relationship between the two.
 More information about this can be found in the [Foreign Key](guide/foreign-keys) guide.
@@ -94,39 +93,39 @@ To begin code generation, execute `temple`, including a path to a Templefile as 
 
 During this stage, Temple will prompt for more details to customise the generated project.
 Since the project definition uses Go, you will be asked to input a Go module name to use for every service in the project.
-This can take any value appropriate to your use case, however following Go convention to use the GitHub URL, we'll use `github.com/temple/tutorial`
+This can take any value appropriate to your use case, however following Go convention to use the GitHub URL, we'll use `github.com/temple/tutorial`.
 
 ### Viewing the Generated Project
-By default the project will output in the current working directory:
+By default the project will be output to the current working directory:
 
 ```
 .
-├── api
+├── api/
 ├── deploy.sh
 ├── docker-compose.yml
-├── example-service
-├── example-service-db
-└── kong
+├── example-service/
+├── example-service-db/
+└── kong/
 ```
 
 Let's look at each directory and file in turn:
 
 * `/example-service/` - contains the Go code for the `ExampleService` microservice we defined in the Templefile.
-A full description of this directory's contents can be seen in the [Golang Reference](reference/golang)
+A full description of this directory's contents can be seen in the [Service Architecture](arch/services) section.
 
 * `/example-service-db/` - This directory contains the SQL init scripts for the database backing the `ExampleService`.
-These scripts manage the database schema and define which fields are stored.
+These scripts hold the database schema, defining which fields are stored.
 
-* `/api/` -This directory contains the OpenAPI specification for the project, used for generating client application code.
-Full details can be seen in the [OpenAPI Reference](reference/openapi)
+* `/api/` - This directory contains the OpenAPI specification for the project, used for generating client application code.
+For more information, check out the [OpenAPI Generation](guide/openapi) guide.
 
-* `/kong/` - Temple projects use [Kong](https://konghq.com/kong/) as an API Gateway, which routes traffic from outside of the application to the correct microservice internally, via a single URL entry point.
+* `/kong/` - Temple projects use [Kong](https://konghq.com/kong/) as an API Gateway, which routes incoming traffic correct microservice, via a single URL entry point.
 The `kong` directory contains a configuration script which correctly configures Kong to forward traffic to the correct services, based on the URL.
 
 * `/docker-compose.yml` - This file defines how to orchestrate all of the services in `docker-compose`, including Kong. 
-More information about this can be found in the [Orchestration Guide](guide/orchestration). 
+More information about this can be found in the [Orchestration Guide](guide/orchestration) guide.
 
-* `/deploy.sh` - This shell script provides an automated way to deploy the application **for local development** , including running all initialization steps and setting environment variables. 
+* `/deploy.sh` - This shell script provides an automated way to deploy the application **for local development**, including running all initialization steps and setting environment variables.
 
 
 ## Generated Services
@@ -139,9 +138,10 @@ These 4 endpoints are defined at the following URLs:
 * `DELETE`: `DELETE /api/example-service/{id}`
 
 Each of these endpoints use JSON encoding for requests and responses, which need to include the attributes defined in the Templefile in the object's body.
-Where `{id}` is used in the path, this should be replaced with the ID of an existing entity in the service, which is returned in the body of the `CREATE` call.
+Where `{id}` is used in the path, this should be replaced with the ID of an existing entity in the service, which is returned in the body of a `CREATE` call.
 
 The OpenAPI specification generated in the `/api` project folder contains a full API Schema of every endpoint available in the application, including their parameters and possible responses.
+This is also outlined in the `README.md` contained in the root of the project.
 
 
 ## System Architecture
@@ -149,6 +149,7 @@ The architecture of the generated project is described in the following diagram:
 
 <img alt="Tutorial System Architecture" src={useBaseUrl('img/tutorial-architecture.png')} />
 
+For more information on how Temple generated systems are architected, check out the [System Architecture](arch/system) section.
 
 ## Running the application
 Before attempting to run the application, ensure [Docker is installed](https://docs.docker.com/get-docker/) and the daemon is running.
@@ -201,11 +202,18 @@ The response from the `DELETE` request is an empty JSON object.
 In this guide, we defined a simple data model, used Temple to generate a microservice, deployed the services locally and then performed some sample requests.
 Using this as a starting point, explore the full power of Temple:
 
-* Add [Access Control](guide/access-control) to your services, and learn to [Enumerate services by others](guide/enumeration)
-* Implement security policies through through the [Authentication Guide](guide/authentication)
-* Create complex relationships between entities with the [Cross-Service Communication Guide](guide/foreign-keys)
-* Take a look at expanding the generated application with custom business logic in the [Business Logic Guide](guide/hooks)
-* Constrain the values allowed to be stored by your services in the [Value Constraints Guide](guide/value-constraints)
-* Modify the contents of your requests and responses using [Value Annotations](guide/value-annotations)
-* Try different orchestration methods, described in the [Orchestration Guide](guide/orchestration)
-* Implement a metrics monitoring suite, detailed in the [Metrics Guide](guide/metrics)
+* [Add authentication](guide/authentication)
+* [Enforce access control](guide/access-control)
+* [Reference other service entities with foreign keys](guide/foreign-keys)
+* [Add business logic with hooks](guide/hooks)
+* [Constrain stored values](guide/value-constraints)
+* [Generate frontend APIs with OpenAPI](guide/openapi)
+* [Add enumeration endpoints](guide/enumeration)
+* [Augment with metrics](guide/metrics)
+* [Add your own endpoints](guide/adding-endpoints)
+* [Add your own database queries](guide/adding-dao-functions)
+* [Remove endpoints from generation](guide/omitting-endpoints)
+* [Restrict attributes to be server or client facing](guide/value-annotations)
+* [Use alternative orchestration](guide/orchestration)
+* [Make changes to your templefile and regenerate without losing your changes](guide/regeneration)
+* [Test your project with Temple Test](guide/temple-test)
