@@ -62,20 +62,35 @@ function Home() {
       title={`${siteConfig.title}`}
       description="Description will go into a meta tag in <head />"
     >
-      <header className={classnames('hero hero--primary', styles.heroBanner)}>
-        <div className="container">
-          <h1 className="hero__title">{siteConfig.title}</h1>
-          <p className="hero__subtitle">{siteConfig.tagline}</p>
-          <div className={styles.buttons}>
+      <header className={styles.hero}>
+        <div className={styles.heroInner}>
+          <h1 className={styles.heroProjectTagline}>
+            <img
+              alt="Docusaurus with Keytar"
+              className={styles.heroLogo}
+              src={useBaseUrl('img/temple.svg')}
+            />
+            Generate{' '}
+            <span className={styles.heroProjectKeywords}>microservice</span>{' '}
+            systems at{' '}
+            <span className={styles.heroProjectKeywords}>lightning speed</span>.
+          </h1>
+          <div className={styles.indexCtas}>
             <Link
-              className={classnames(
-                'button button--outline button--secondary button--lg',
-                styles.getStarted
-              )}
+              className={styles.indexCtasGetStartedButton}
               to={useBaseUrl('docs/introduction')}
             >
               Get Started
             </Link>
+            <span className={styles.indexCtasGitHubButtonWrapper}>
+              <iframe
+                className={styles.indexCtasGitHubButton}
+                src="https://ghbtns.com/github-btn.html?user=TempleEight&amp;repo=temple&amp;type=star&amp;count=true&amp;size=large"
+                width={160}
+                height={30}
+                title="GitHub Stars"
+              />
+            </span>
           </div>
         </div>
       </header>
