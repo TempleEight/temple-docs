@@ -12,8 +12,8 @@ const features = [
     imageUrl: 'img/microservices.png',
     description: (
       <>
-        Temple provides tools for automatic development of microservice based systems.
-        Focus on your business logic, and we&apos;ll do the chores. 
+        Temple provides tools for automatic development of microservice based
+        systems. Focus on your business logic, and we&apos;ll do the chores.
       </>
     ),
   },
@@ -22,8 +22,10 @@ const features = [
     imageUrl: 'img/best-practices.png',
     description: (
       <>
-        Everything Temple generates is designed from the ground up to be readable, extendible and to follow standard best practices.
-        You can trust that everything we produce will be usable long after you've outgrown us.
+        Everything Temple generates is designed from the ground up to be
+        readable, extendible and to follow standard best practices. You can
+        trust that everything we produce will be usable long after you've
+        outgrown us.
       </>
     ),
   },
@@ -32,8 +34,9 @@ const features = [
     imageUrl: 'img/templefile.png',
     description: (
       <>
-        Templefiles are written in a simple, high level domain specific language.
-        Know that all your services will be up and running in no time, so you can deploy from day one.
+        Templefiles are written in a simple, high level domain specific
+        language. Know that all your services will be up and running in no time,
+        so you can deploy from day one.
       </>
     ),
   },
@@ -73,7 +76,7 @@ function Home() {
             Generate{' '}
             <span className={styles.heroProjectKeywords}>microservice</span>{' '}
             systems at{' '}
-            <span className={styles.heroProjectKeywords}>lightning speed</span>.
+            <span className={styles.heroProjectKeywords}>lightning speed</span>
           </h1>
           <div className={styles.indexCtas}>
             <Link
