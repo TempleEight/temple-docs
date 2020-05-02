@@ -111,13 +111,13 @@ By default the project will be output to the current working directory:
 Let's look at each directory and file in turn:
 
 * `/example-service/` - contains the Go code for the `ExampleService` microservice we defined in the Templefile.
-A full description of this directory's contents can be seen in the [Service Architecture](arch/services) section.
+A full description of this directory's contents can be seen in the [Service Architecture](arch/service) section.
 
 * `/example-service-db/` - This directory contains the SQL init scripts for the database backing the `ExampleService`.
 These scripts hold the database schema, defining which fields are stored.
 
 * `/api/` - This directory contains the OpenAPI specification for the project, used for generating client application code.
-For more information, check out the [OpenAPI Generation](guide/openapi) guide.
+For more information, check out the [OpenAPI Generation](guide/open-api) guide.
 
 * `/kong/` - Temple projects use [Kong](https://konghq.com/kong/) as an API Gateway, which routes incoming traffic correct microservice, via a single URL entry point.
 The `kong` directory contains a configuration script which correctly configures Kong to forward traffic to the correct services, based on the URL.
@@ -207,7 +207,7 @@ Using this as a starting point, explore the full power of Temple:
 * [Reference other service entities with foreign keys](guide/foreign-keys)
 * [Add business logic with hooks](guide/hooks)
 * [Constrain stored values](guide/value-constraints)
-* [Generate frontend APIs with OpenAPI](guide/openapi)
+* [Generate frontend APIs with OpenAPI](guide/open-api)
 * [Add enumeration endpoints](guide/enumeration)
 * [Augment with metrics](guide/metrics)
 * [Add your own endpoints](guide/adding-endpoints)
@@ -215,5 +215,5 @@ Using this as a starting point, explore the full power of Temple:
 * [Remove endpoints from generation](guide/omitting-endpoints)
 * [Restrict attributes to be server or client facing](guide/value-annotations)
 * [Use alternative orchestration](guide/orchestration)
-* [Make changes to your templefile and regenerate without losing your changes](guide/regeneration)
+* [Make changes to your Templefile and regenerate without losing your changes](guide/regeneration)
 * [Test your project with Temple Test](guide/temple-test)
