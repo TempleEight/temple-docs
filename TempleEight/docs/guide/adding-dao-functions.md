@@ -59,7 +59,7 @@ type Datastore interface {
 }
 ```
 
-By adding a method to the interface, and then providing an implementation of that interface on the object DAO, it will be accessible from [hooks](hooks) as well as from [custom handlers](custom-handlers).
+By adding a method to the interface, and then providing an implementation of that interface on the object DAO, it will be accessible from [hooks](hooks) as well as from [additional endpoints](adding-endpoints) that you define.
 
 For example, let's add a custom DAO method that will find the first row where `bar = 5`:
 

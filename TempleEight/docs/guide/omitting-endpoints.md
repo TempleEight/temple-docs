@@ -11,7 +11,7 @@ Whenever you define a new service in your `Templefile`, the following 4 endpoint
 3. `UPDATE`: Update an existing object with the new provided attributes, using the ID
 4. `DELETE`: Delete an object from the datastore, using the ID
 
-Sometimes you might not want a particular endpoint at all, or might want to define your own custom implementation, as is shown in the [adding endpoints](adding-endpointsmd) guide.
+Sometimes you might not want a particular endpoint at all, or might want to define your own custom implementation, as is shown in the [Adding Endpoints](adding-endpoints) guide.
 To remove the endpoint from the generated code, you can include additional metadata within your Templefile.
 
 
@@ -49,8 +49,8 @@ ExampleService: service {
 ```
 
 In addition to the CRUD endpoints that we generate, you are able to define your own endpoints for enumerating though multiple stored items, in a single query.
-More information about these `list` endpoints can be found in the [enumeration](enumeration) guide.
+More information about these `list` endpoints can be found in the [Enumeration](enumeration) guide.
 
 Finally, an additional endpoint, `identify`, may be generated if your service contains the `#auth` metadata. 
 Please note that with the current release, it is not possible to exclude the `identify` endpoint from your service.
-More information about the `identify` endpoint can be found in the [authentication](authentication) guide.
+More information about the `identify` endpoint can be found in the [Authentication](authentication) guide.

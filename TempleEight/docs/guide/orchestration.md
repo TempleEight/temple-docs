@@ -30,7 +30,7 @@ ExampleService: service {
 ```
 Here, the `#provider` annotation marks that this project is being orchestrated, with the framework provided in the argument.
 All of the frameworks are generated to share a common deployment script that does all the heavy lifting, so that usage is the same no matter which you choose.
-This includes the [Kong API Gateway](https://docs.konghq.com/) for ingress, which is detailed [below](#kong-api-gateway)
+This includes the [Kong API Gateway](https://docs.konghq.com/) for ingress, which is detailed [below](#kong-api-gateway).
 
 ## Docker Compose
 
