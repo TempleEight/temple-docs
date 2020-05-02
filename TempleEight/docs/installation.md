@@ -112,6 +112,6 @@ Simply [follow this link](https://marketplace.visualstudio.com/items?itemName=Te
 
 ### IntelliJ
 We also support syntax highlighting in the IntelliJ suite of IDEs:
-- Clone our syntax highlighting repository: https://github.com/TempleEight/temple.tmlangaugae
+- Clone our syntax highlighting repository: https://github.com/TempleEight/temple.tmlanguage
 - Within IntelliJ, open Preferences › Editor › TextMate Bundles, and click add - point this at the root of the `temple.tmlanguage` directory
 
