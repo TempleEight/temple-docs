@@ -3,6 +3,7 @@ id: installation
 title: Installation
 sidebar_label: Installation
 ---
+import useBaseUrl from '@docusaurus/useBaseUrl';
 
 Welcome to the Temple installation guide!
 
@@ -98,3 +99,19 @@ templeeight/temple:1.0 \
 temple validate /home/project/example.templefile
 ```
 :::
+
+## Installing the Syntax Highlighter
+### VSCode
+If you're using VSCode for Temple development, we have a syntax highlighter for Templefiles in the marketplace.
+Simply [follow this link](https://marketplace.visualstudio.com/items?itemName=TempleEight.temple) or search "Templefile" in VSCode!
+
+
+<p align="center">
+<img alt="VSCode Syntax Highlighting" src={useBaseUrl('img/vscode-syntax.png')} />
+</p>
+
+### IntelliJ
+We also support syntax highlighting in the IntelliJ suite of IDEs:
+- Clone our syntax highlighting repository: https://github.com/TempleEight/temple.tmlangaugae
+- Within IntelliJ, open Preferences › Editor › TextMate Bundles, and click add - point this at the root of the `temple.tmlanguage` directory
+
