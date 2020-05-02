@@ -8,33 +8,35 @@ import styles from './styles.module.css';
 
 const features = [
   {
-    title: <>Easy to Use</>,
-    imageUrl: 'img/undraw_docusaurus_mountain.svg',
+    title: <>Microservice Code Generation</>,
+    imageUrl: 'img/microservices.png',
     description: (
       <>
-        Temple was designed from the ground up to be easily installed and used
-        to get your services up and running quickly.
+        Temple provides tools for automatic development of microservice based
+        systems. Focus on your business logic, and we&apos;ll do the chores.
       </>
     ),
   },
   {
-    title: <>Focus on What Matters</>,
-    imageUrl: 'img/undraw_docusaurus_tree.svg',
+    title: <>Industry-Standard Best Practices</>,
+    imageUrl: 'img/best-practices.png',
     description: (
       <>
-        Temple lets you focus on your business logic, and we&apos;ll do the
-        chores. Go ahead and check out the Templefile docs to begin.
+        Everything Temple generates is designed from the ground up to be
+        readable, extendible and to follow standard best practices. You can
+        trust that everything we produce will be usable long after you've
+        outgrown us.
       </>
     ),
   },
   {
-    title: <>Powered by Magic</>,
-    imageUrl: 'img/undraw_docusaurus_react.svg',
+    title: <>Designed For Simplicity</>,
+    imageUrl: 'img/templefile.png',
     description: (
       <>
-        Templefiles are written in a high level DSL, trust that all your
-        services will be up and running in no time, so you can be deploying from
-        day one.
+        Templefiles are written in a simple, high level domain specific
+        language. Know that all your services will be up and running in no time,
+        so you can deploy from day one.
       </>
     ),
   },
@@ -63,20 +65,35 @@ function Home() {
       title={`${siteConfig.title}`}
       description="Description will go into a meta tag in <head />"
     >
-      <header className={classnames('hero hero--primary', styles.heroBanner)}>
-        <div className="container">
-          <h1 className="hero__title">{siteConfig.title}</h1>
-          <p className="hero__subtitle">{siteConfig.tagline}</p>
-          <div className={styles.buttons}>
+      <header className={styles.hero}>
+        <div className={styles.heroInner}>
+          <h1 className={styles.heroProjectTagline}>
+            <img
+              alt="Docusaurus with Keytar"
+              className={styles.heroLogo}
+              src={useBaseUrl('img/temple.svg')}
+            />
+            Generate{' '}
+            <span className={styles.heroProjectKeywords}>microservice</span>{' '}
+            systems at{' '}
+            <span className={styles.heroProjectKeywords}>lightning speed</span>
+          </h1>
+          <div className={styles.indexCtas}>
             <Link
-              className={classnames(
-                'button button--outline button--secondary button--lg',
-                styles.getStarted
-              )}
+              className={styles.indexCtasGetStartedButton}
               to={useBaseUrl('docs/introduction')}
             >
               Get Started
             </Link>
+            <span className={styles.indexCtasGitHubButtonWrapper}>
+              <iframe
+                className={styles.indexCtasGitHubButton}
+                src="https://ghbtns.com/github-btn.html?user=TempleEight&amp;repo=temple&amp;type=star&amp;count=true&amp;size=large"
+                width={160}
+                height={30}
+                title="GitHub Stars"
+              />
+            </span>
           </div>
         </div>
       </header>
