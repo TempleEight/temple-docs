@@ -12,15 +12,19 @@ We'll be using the `ExampleProject` from the [Getting Started](../getting-starte
 ## Adding custom logic
 In the `example-service` directory, you'll find the following files and folders:
 ```bash
-~/Documents/temple-tutorial ❯❯❯ ls -1 example-service
-Dockerfile
-config.json
-dao
-example-service.go
-go.mod
-hook.go
-setup.go
-util
+example-service
+├── Dockerfile
+├── config.json
+├── dao
+│   ├── dao.go
+│   ├── datastore.go
+│   └── errors.go
+├── example-service.go
+├── go.mod
+├── hook.go
+├── setup.go
+└── util
+    └── util.go
 ```
 
 We're most interested in `setup.go` for this guide, which is where you can add additional logic that won't be lost if you need to regenerate your Templefile.
