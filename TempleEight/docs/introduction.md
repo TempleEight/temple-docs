@@ -32,20 +32,26 @@ Need to change your Templefile specification halfway through development? No pro
 Temple is in pre-alpha, please forgive the limited selection! We currently support:
 
 #### Server-side
+
 * [Go](http://golang.org)
 
 #### Database
+
 * [PostgreSQL](https://www.postgresql.org/)
 
-#### Client-side 
+#### Client-side
+
 * Many target generation via [OpenAPI](https://swagger.io/docs/specification/about/)
 
 #### Containerisation
+
 * [Docker](https://www.docker.com/)
 
 #### Orchestration
+
 * [Docker Compose](https://docs.docker.com/compose/) for lightweight container orchestration
 * [Kubernetes](https://kubernetes.io) for fully-featured production grade orchestration
 
 #### Extras
+
 * Service metrics aggregated and displayed with [Prometheus](https://prometheus.io/) and [Grafana](https://grafana.com/)
