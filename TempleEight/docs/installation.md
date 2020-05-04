@@ -11,7 +11,7 @@ In order to get using Temple, you'll need to install the *Temple CLI*.
 
 ## Prerequisites
 
-If installing locally, the Temple CLI requires [Java](https://java.com/en/download/help/download_options.xml) to run.
+If installing locally, the Temple CLI requires [Java 11 or above](https://java.com/en/download/help/download_options.xml) to run.
 We also support installation via a [Docker](https://www.docker.com) image.
 
 In order to build and orchestrate generated services, you'll need:
