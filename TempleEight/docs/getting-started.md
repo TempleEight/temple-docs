@@ -185,7 +185,7 @@ The response from the `READ` request is the JSON object representing the entity 
 ### Updating an Entity
 To update an existing entity, invoke a PUT request to the service's base URL, including the ID of the entity you want to update, as well as a JSON object of the new attributes to store:
 ```bash
-~/temple-tutorial ❯❯❯ curl -X PUT $KONG_ENTRY/api/example-service/e3621abe-7e40-11ea-9934-0242c0a88002 -d {"foo": "Goodbye Temple!", "bar": 456}'
+~/temple-tutorial ❯❯❯ curl -X PUT $KONG_ENTRY/api/example-service/e3621abe-7e40-11ea-9934-0242c0a88002 -d '{"foo": "Goodbye Temple!", "bar": 456}'
 {"id":"e3621abe-7e40-11ea-9934-0242c0a88002","foo":"Goodbye Temple!","bar":456}
 ```
 The response from the `UPDATE` request is the JSON object representing the new entity stored, or an error if it was not found.
