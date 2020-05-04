@@ -60,7 +60,7 @@ Review: service {
   tenant: Tenant;
   reservation: Reservation;
   stars: int(5, 0);
-  comment: string;
+  message: string;
   #readable(by: all);
 }
 ```
