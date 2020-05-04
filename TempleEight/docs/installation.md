@@ -48,7 +48,7 @@ To install, run:
 
 <TabItem value="linux">
 Install by grabbing the latest release from <a href="https://github.com/TempleEight/temple/releases">GitHub</a>:
-<code>❯❯❯ wget -O /usr/bin/temple https://github.com/TempleEight/temple/releases/download/latest/temple-latest </code>
+<code>❯❯❯ wget -O /usr/bin/temple https://github.com/TempleEight/temple/releases/latest/download/temple-latest </code>
 <code>❯❯❯ chmod +x /usr/bin/temple</code>
 </TabItem>
 
