@@ -11,7 +11,7 @@ In order to get using Temple, you'll need to install the *Temple CLI*.
 
 ## Prerequisites
 
-If installing locally, the Temple CLI requires [Java](https://java.com/en/download/help/download_options.xml) to run.
+If installing locally, the Temple CLI requires [Java 11 or above](https://java.com/en/download/help/download_options.xml) to run.
 We also support installation via a [Docker](https://www.docker.com) image.
 
 In order to build and orchestrate generated services, you'll need:
@@ -48,7 +48,7 @@ To install, run:
 
 <TabItem value="linux">
 Install by grabbing the latest release from <a href="https://github.com/TempleEight/temple/releases">GitHub</a>:
-<code>❯❯❯ wget -O /usr/bin/temple https://github.com/TempleEight/temple/releases/download/latest/temple-latest </code>
+<code>❯❯❯ wget -O /usr/bin/temple https://github.com/TempleEight/temple/releases/latest/download/temple-latest </code>
 <code>❯❯❯ chmod +x /usr/bin/temple</code>
 </TabItem>
 
