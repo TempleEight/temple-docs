@@ -22,14 +22,14 @@ Start by making a new directory, then move into it:
 ~/temple-tutorial ❯❯❯
 ```
 
-In this new directory, create a plain text file called `simple.temple`.
+In this new directory, create a plain text file called `example.temple`.
 Within this file we are going to define a new project and an example service.
 
 ### Defining a Project
 A Templefile must contain a single project block.
 The project block gives the project a name, and defines the default configuration for generation.
 
-In the `simple.temple` file, let's define a project called `ExampleProject`, which sets the default language to `go`, the default database to `postgres` and configures Docker Compose to orchestrate the project:
+In the `example.temple` file, let's define a project called `ExampleProject`, which sets the default language to `go`, the default database to `postgres` and configures Docker Compose to orchestrate the project:
 ```templefile
 ExampleProject: project {
   #language(go);
